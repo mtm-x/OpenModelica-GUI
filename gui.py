@@ -16,7 +16,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLineEdit,
-    QListView, QPushButton, QSizePolicy, QVBoxLayout,
+    QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
 import res_rc
 
@@ -24,13 +24,17 @@ class Ui_Widget(object):
     def setupUi(self, Widget):
         if not Widget.objectName():
             Widget.setObjectName(u"Widget")
-        Widget.resize(550, 419)
+        Widget.resize(470, 315)
         self.horizontalLayout = QHBoxLayout(Widget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.leftmenu = QWidget(Widget)
         self.leftmenu.setObjectName(u"leftmenu")
         self.verticalLayout = QVBoxLayout(self.leftmenu)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.verticalLayout.addItem(self.verticalSpacer)
+
         self.widget = QWidget(self.leftmenu)
         self.widget.setObjectName(u"widget")
         self.verticalLayout_2 = QVBoxLayout(self.widget)
@@ -56,7 +60,7 @@ class Ui_Widget(object):
         self.verticalLayout.addWidget(self.widget_2)
 
 
-        self.horizontalLayout.addWidget(self.leftmenu, 0, Qt.AlignmentFlag.AlignLeft)
+        self.horizontalLayout.addWidget(self.leftmenu)
 
         self.rightpanel = QWidget(Widget)
         self.rightpanel.setObjectName(u"rightpanel")
@@ -87,6 +91,14 @@ class Ui_Widget(object):
 
         self.horizontalLayout_3.addWidget(self.main_search_line)
 
+        self.folder_but = QPushButton(self.frame)
+        self.folder_but.setObjectName(u"folder_but")
+        icon = QIcon()
+        icon.addFile(u":/icons/res/folder.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.folder_but.setIcon(icon)
+
+        self.horizontalLayout_3.addWidget(self.folder_but)
+
         self.launch_but = QPushButton(self.frame)
         self.launch_but.setObjectName(u"launch_but")
 
@@ -95,23 +107,7 @@ class Ui_Widget(object):
 
         self.verticalLayout_7.addWidget(self.frame)
 
-        self.listView = QListView(self.widget_5)
-        self.listView.setObjectName(u"listView")
-
-        self.verticalLayout_7.addWidget(self.listView)
-
-        self.widget_3 = QWidget(self.widget_5)
-        self.widget_3.setObjectName(u"widget_3")
-        self.verticalLayout_5 = QVBoxLayout(self.widget_3)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-
-        self.verticalLayout_7.addWidget(self.widget_3, 0, Qt.AlignmentFlag.AlignVCenter)
-
-        self.widget_4 = QWidget(self.widget_5)
-        self.widget_4.setObjectName(u"widget_4")
-        self.verticalLayout_6 = QVBoxLayout(self.widget_4)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.frame_3 = QFrame(self.widget_4)
+        self.frame_3 = QFrame(self.widget_5)
         self.frame_3.setObjectName(u"frame_3")
         self.frame_3.setFrameShape(QFrame.Shape.StyledPanel)
         self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
@@ -151,10 +147,7 @@ class Ui_Widget(object):
         self.verticalLayout_8.addWidget(self.set_but)
 
 
-        self.verticalLayout_6.addWidget(self.frame_3)
-
-
-        self.verticalLayout_7.addWidget(self.widget_4)
+        self.verticalLayout_7.addWidget(self.frame_3)
 
 
         self.verticalLayout_4.addWidget(self.widget_5)
@@ -172,7 +165,8 @@ class Ui_Widget(object):
         Widget.setWindowTitle(QCoreApplication.translate("Widget", u"Widget", None))
         self.info_but.setText(QCoreApplication.translate("Widget", u"Info", None))
         self.help_but.setText(QCoreApplication.translate("Widget", u"Help", None))
-        self.main_search_line.setPlaceholderText(QCoreApplication.translate("Widget", u"Enter model name", None))
+        self.main_search_line.setPlaceholderText(QCoreApplication.translate("Widget", u"Choose model .exe", None))
+        self.folder_but.setText("")
         self.launch_but.setText(QCoreApplication.translate("Widget", u"Launch Model", None))
         self.start_line.setPlaceholderText(QCoreApplication.translate("Widget", u"Enter start time in seconds", None))
         self.stop_line.setPlaceholderText(QCoreApplication.translate("Widget", u"Enter stop time in seconds", None))

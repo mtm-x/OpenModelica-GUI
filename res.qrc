@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="icons">
+    <file>res/folder.png</file>
     <file>res/search.png</file>
     <file>res/menu-bar.png</file>
   </qresource>
