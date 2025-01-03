@@ -31,6 +31,7 @@ class SimulationWorker(QThread):
             stderr=subprocess.PIPE,
             text=True
         )
+        print(process.stdout)
         try:
             if "LOG_SUCCESS" in process.stdout:
                 self.simulation_done.emit("Simulation finished successfully.")
