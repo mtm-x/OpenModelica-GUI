@@ -1,0 +1,19 @@
+{"format":"Transformational debugger info","version":1,
+"info":{"name":"NonInteractingTanks.Tank","description":""},
+"variables":{
+"h":{"comment":"","kind":"state","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/openmodelica/NonInteractingTanks/Tank.mo","lineStart":5,"lineEnd":5,"colStart":1,"colEnd":11}}},
+"der(h)":{"comment":"","kind":"derivative","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/openmodelica/NonInteractingTanks/Tank.mo","lineStart":5,"lineEnd":5,"colStart":1,"colEnd":11}}},
+"Qo":{"comment":"","kind":"variable","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/openmodelica/NonInteractingTanks/Tank.mo","lineStart":5,"lineEnd":5,"colStart":1,"colEnd":11}}},
+"A":{"comment":"","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/openmodelica/NonInteractingTanks/Tank.mo","lineStart":4,"lineEnd":4,"colStart":1,"colEnd":29}}},
+"Qin":{"comment":"","kind":"parameter","type":"Real","unit":"","displayUnit":"","source":{"info":{"file":"C:/openmodelica/NonInteractingTanks/Tank.mo","lineStart":4,"lineEnd":4,"colStart":1,"colEnd":29}}}
+},
+"equations":[{"eqIndex":0,"tag":"dummy"},
+{"eqIndex":1,"section":"initial","tag":"assign","defines":["h"],"uses":["$START.h"],"equation":["$START.h"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":2,"tag":"alias","equation":[4],"section":"initial"},
+{"eqIndex":3,"tag":"alias","equation":[5],"section":"initial"},
+{"eqIndex":4,"section":"regular","tag":"assign","defines":["Qo"],"uses":["h","time"],"equation":["if time <= 5.0 then 0.0 else sqrt(h)"],"source":{"info":{"file":"","lineStart":0,"lineEnd":0,"colStart":0,"colEnd":0}}},
+{"eqIndex":5,"section":"regular","tag":"assign","defines":["der(h)"],"uses":["A","Qin","Qo"],"equation":["(Qin - Qo) / A"],"source":{"info":{"file":"C:/openmodelica/NonInteractingTanks/Tank.mo","lineStart":10,"lineEnd":10,"colStart":1,"colEnd":22}}}
+],
+"functions":[
+]
+}

@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>res/search.png</file>
+    <file>res/menu-bar.png</file>
+  </qresource>
+</RCC>
