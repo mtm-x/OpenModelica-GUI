@@ -5,10 +5,11 @@
 
 import sys
 import os
+import subprocess
+from webbrowser import open
 from PySide6.QtCore import  QThread, Signal
 from PySide6.QtWidgets import QApplication, QWidget, QMessageBox, QFileDialog
 from PySide6.QtGui import QIntValidator
-import subprocess
 from gui import Ui_Widget
 
 current_directory = os.getcwd()
@@ -54,6 +55,9 @@ class Widget(QWidget):
         self.ui.launch_but.clicked.connect(self.launch_but_clicked)
         self.ui.set_but.clicked.connect(self.set_but_clicked)
         self.ui.folder_but.clicked.connect(self.folder_but_clicked)
+        self.ui.help_but.clicked.connect(self.help_but_clicked)
+        self.ui.info_but.clicked.connect(self.info_but_clicked)
+        #Title of the executable
         self.setWindowTitle("Open Modelica Model Launcher")
         
     def set_but_clicked(self):
@@ -66,6 +70,19 @@ class Widget(QWidget):
         if self.exe_path:
             self.working_directory = os.path.dirname(self.exe_path)  # Extract the folder path from the file path
 
+    def help_but_clicked(self):
+        open("https://github.com/mtm-x/OpenModelica-GUI")
+
+    def info_but_clicked(self):
+        info= QMessageBox()
+        info.setWindowTitle("Information") 
+        info.setText("This is a simple Modelica model launcher. It allows you to select a Modelica model and You can specify the start and stop time for the simulation. The simulation will run in the background and you will be notified when it is done.")
+        info.setIcon(QMessageBox.Information)
+        info.setStandardButtons(QMessageBox.Ok)
+        info.setDefaultButton(QMessageBox.Ok)
+        info.exec()
+
+    
     def launch_but_clicked(self):
         self.stop_time = self.ui.stop_line.text().strip()
         self.start_time = self.ui.start_line.text().strip()
