@@ -9,6 +9,7 @@ import subprocess
 from webbrowser import open
 from PySide6.QtCore import  QThread, Signal
 from PySide6.QtWidgets import QApplication, QWidget, QMessageBox, QFileDialog
+from PySide6.QtGui import QIcon
 from PySide6.QtGui import QIntValidator
 from gui import Ui_Widget
 
@@ -53,17 +54,17 @@ class Widget(QWidget):
 
         #Signals and slots
         self.ui.launch_but.clicked.connect(self.launch_but_clicked)
-        self.ui.set_but.clicked.connect(self.set_but_clicked)
+        #self.ui.set_but.clicked.connect(self.set_but_clicked)
         self.ui.folder_but.clicked.connect(self.folder_but_clicked)
         self.ui.help_but.clicked.connect(self.help_but_clicked)
         self.ui.info_but.clicked.connect(self.info_but_clicked)
         #Title of the executable
         self.setWindowTitle("Open Modelica Model Launcher")
-        
-    def set_but_clicked(self):
-        positive_validator = QIntValidator(0, 1000, self)  # Validator to allow positive numbers (1 to 1000)
-        self.ui.start_line.setValidator(positive_validator)
-        self.ui.stop_line.setValidator(positive_validator)
+        self.setWindowIcon(QIcon("res/OML1.ico"))
+    #def set_but_clicked(self):
+        #positive_validator = QIntValidator(0, 1000, self)  # Validator to allow positive numbers (1 to 1000)
+        #self.ui.start_line.setValidator(positive_validator)
+        #self.ui.stop_line.setValidator(positive_validator)
     def folder_but_clicked(self):
         self.exe_path, _ = QFileDialog.getOpenFileName(None, "Open File", "", "All Files (*)")
         self.ui.main_search_line.setText(self.exe_path)
