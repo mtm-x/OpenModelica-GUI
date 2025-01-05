@@ -3,24 +3,23 @@ import os
 import subprocess
 import logging
 from webbrowser import open as open_browser
-from PySide6.QtCore import QThread, Signal
-from PySide6.QtWidgets import (
-    QApplication, QWidget, QMessageBox, QFileDialog
-)
-from PySide6.QtGui import QIcon, QIntValidator
+
+from PyQt6.QtGui import QIcon, QIntValidator
+from PyQt6.QtWidgets import QFileDialog, QWidget, QMessageBox, QApplication
 from src.gui import Ui_Widget
+import src.res_rc
 from src.logger import setup_logging
+from PyQt6.QtCore import QThread, pyqtSignal, QObject
 
-
-class SimulationWorker(QThread):
+class SimulationWorker(QObject):
+    status_signal = pyqtSignal(str, str, str)
     """
     A worker thread for asynchronous simulation execution.
     Signals progress and completion status to the main GUI.
     """
-    simulation_done = Signal(str, str, str)
 
     def __init__(self, start_time, stop_time, exe_path, working_directory):
-        super().__init__()
+        super(SimulationWorker, self).__init__()
         self.start_time = start_time
         self.stop_time = stop_time
         self.exe_path = exe_path
@@ -53,26 +52,26 @@ class SimulationWorker(QThread):
 
         try:
             if "LOG_SUCCESS" in result.stdout:
-                logging.info("STDOUT:\n%s", result.stdout.strip())
-                self.simulation_done.emit(
+                self.status_signal.emit(
                     "Simulation Status",
                     "Simulation successful. Check the log file.",
                     "info"
                 )
+                logging.info("STDOUT:\n%s", result.stdout.strip())
             else:
-                logging.error("STDERR:\n%s", result.stderr.strip())
-                self.simulation_done.emit(
+                self.status_signal.emit(
                     "Simulation Status",
                     "Simulation failed. Check the log file.",
                     "critical"
                 )
+                logging.error("STDOUT:\n%s", result.stdout.strip())
         except Exception as e:
-            self.simulation_done.emit(
+            self.status_signal.emit(
                 "Simulation Status",
-                f"An error occurred: {str(e)}",
+                "An error occurred",
                 "critical"
             )
-
+            logging.exception("An error occurred during simulation.")
 
 class Widget(QWidget):
     """
@@ -116,11 +115,11 @@ class Widget(QWidget):
         self.start_time = self.ui.start_line.text().strip()
         self.stop_time = self.ui.stop_line.text().strip()
 
-        if self.stop_time <= self.start_time:
+        if float(self.stop_time) <= float(self.start_time):
             self.show_message_box(
                 "Warning",
                 "Stop time must be greater than start time.",
-                QMessageBox.Warning
+                "warning"
             )
             return
 
@@ -162,7 +161,7 @@ class Widget(QWidget):
             self.show_message_box(
                 "Warning",
                 "Please enter valid start and stop times.",
-                QMessageBox.Warning
+                "warning"
             )
             return
 
@@ -170,47 +169,59 @@ class Widget(QWidget):
             self.show_message_box(
                 "Warning",
                 "Please select a model file.",
-                QMessageBox.Warning
+                "warning"
             )
             return
 
-        self.ui.launch_but.setEnabled(False)
+
         self.worker = SimulationWorker(
             self.start_time,
             self.stop_time,
             self.exe_path,
             self.working_directory
         )
-        self.worker.simulation_done.connect(self.on_simulation_done)
-        self.worker.start()
+        self.ui.stop_line.clear()
+        self.ui.start_line.clear()
+        self.ui.main_search_line.clear()
+        self.ui.stop_line.clear()
+        self.exe_path = None
+        self.working_directory = None
+        self.stop_time = None
+        self.start_time = None
+        self.ui.start_line.clear()
 
-    def on_simulation_done(self, title, message, icon_type):
-        """
-        Perform actions when the simulation is finished.
-        """
-        self.show_message_box(title, message, icon_type)
-        self.ui.launch_but.setEnabled(True)
+
+
+        self.worker.status_signal.connect(lambda title, message, icon_type: self.show_message_box(title, message, icon_type))
+        self.simulation_thread = QThread()
+        self.worker.moveToThread(self.simulation_thread)
+        self.worker.moveToThread(self.simulation_thread)
+        self.simulation_thread.finished.connect(self.simulation_thread.deleteLater)
+
+        self.simulation_thread.started.connect(self.worker.run)
+        self.simulation_thread.finished.connect(self.simulation_thread.deleteLater)
+        self.simulation_thread.finished.connect(self.worker.deleteLater)
+        self.simulation_thread.start()
+
+
+
+
 
     def show_message_box(self, title, message, icon_type):
         """
-        Display a message box with the specified title, message, and icon.
+        Show a message box with the given title, message, and icon type.
         """
-        message_box = QMessageBox(self)
-        message_box.setWindowTitle(title)
-        message_box.setText(message)
         if icon_type == "info":
-            message_box.setIcon(QMessageBox.Information)
+            QMessageBox.information(self, title, message)
+        elif icon_type == "warning":
+            QMessageBox.warning(self, title, message)
         elif icon_type == "critical":
-            message_box.setIcon(QMessageBox.Critical)
-        else:
-            message_box.setIcon(icon_type)
-        message_box.setStandardButtons(QMessageBox.Ok)
-        message_box.exec()
-
-
+            QMessageBox.critical(self, title, message)
+        
+        
 if __name__ == "__main__":
-    setup_logging()
     app = QApplication(sys.argv)
+    setup_logging()
     widget = Widget()
     widget.show()
     sys.exit(app.exec())

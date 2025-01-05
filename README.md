@@ -33,7 +33,7 @@ OMML is designed to enhance usability and streamline the simulation process, pro
 
 ## Features
 - **User-Friendly GUI**:
-    - Intuitive design using PySide6 for smooth user interaction.
+    - Intuitive design using PyQt6 for smooth user interaction.
     - Seamless integration of widgets for parameter configuration and model selection.
 
 - **Simulation Control**:
@@ -57,13 +57,13 @@ OMML is designed to enhance usability and streamline the simulation process, pro
 The following software and dependencies must be installed on your system:
 1. Python 3.12.0 or higher.
 2. The following Python libraries installed using `pip`:
-    - `PySide6` (for GUI development)
+    - `PyQt6` (for GUI development)
     - `logging` (for logging functionality)
 3. OpenModelica or any compatible Modelica simulation executable.
 
 To install the required Python packages:
    ```bash
-   pip install PySide6 logging
+   pip install PyQt6 logging
    ```
 
 ### Installation
