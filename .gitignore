@@ -3,3 +3,4 @@ Model/NonInteractingTanks/
 .venv/
 .idea/
 res.qrc
+form.ui
