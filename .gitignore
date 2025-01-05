@@ -2,5 +2,4 @@ __pycache__/
 Model/NonInteractingTanks/
 .venv/
 .idea/
-QT_GUI.pyproject
-QT_GUI.pyproject.user
+res.qrc
