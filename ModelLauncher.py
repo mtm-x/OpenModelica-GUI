@@ -8,8 +8,8 @@ from PySide6.QtWidgets import (
     QApplication, QWidget, QMessageBox, QFileDialog
 )
 from PySide6.QtGui import QIcon, QIntValidator
-from gui import Ui_Widget
-from logger import setup_logging
+from src.gui import Ui_Widget
+from src.logger import setup_logging
 
 
 class SimulationWorker(QThread):
@@ -97,7 +97,7 @@ class Widget(QWidget):
 
     def setup_ui(self):
         """
-        Setup the UI and connect signals to their corresponding slots.
+        Set up the UI and connect signals to their corresponding slots.
         """
         self.ui.launch_but.clicked.connect(self.on_launch_button_clicked)
         self.ui.folder_but.clicked.connect(self.on_folder_button_clicked)
