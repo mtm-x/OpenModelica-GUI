@@ -1,4 +1,6 @@
 __pycache__/
-design/
 Model/NonInteractingTanks/
-test.py
+.venv/
+.idea/
+QT_GUI.pyproject
+QT_GUI.pyproject.user
