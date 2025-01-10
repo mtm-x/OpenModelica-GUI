@@ -1,15 +1,16 @@
-import sys
+import logging
 import os
 import subprocess
-import logging
+import sys
 from webbrowser import open as open_browser
 
+from PyQt6.QtCore import QThread, pyqtSignal, QObject
 from PyQt6.QtGui import QIcon, QIntValidator
 from PyQt6.QtWidgets import QFileDialog, QWidget, QMessageBox, QApplication
+
 from src.gui import Ui_Widget
-import src.res_rc
 from src.logger import setup_logging
-from PyQt6.QtCore import QThread, pyqtSignal, QObject
+
 
 class SimulationWorker(QObject):
     status_signal = pyqtSignal(str, str, str)
@@ -65,13 +66,14 @@ class SimulationWorker(QObject):
                     "critical"
                 )
                 logging.error("STDOUT:\n%s", result.stdout.strip())
-        except Exception as e:
+        except Exception:
             self.status_signal.emit(
                 "Simulation Status",
                 "An error occurred",
                 "critical"
             )
             logging.exception("An error occurred during simulation.")
+
 
 class Widget(QWidget):
     """
@@ -173,7 +175,6 @@ class Widget(QWidget):
             )
             return
 
-
         self.worker = SimulationWorker(
             self.start_time,
             self.stop_time,
@@ -183,29 +184,26 @@ class Widget(QWidget):
         self.ui.stop_line.clear()
         self.ui.start_line.clear()
         self.ui.main_search_line.clear()
-        self.ui.stop_line.clear()
         self.exe_path = None
         self.working_directory = None
         self.stop_time = None
         self.start_time = None
-        self.ui.start_line.clear()
 
-
-
-        self.worker.status_signal.connect(lambda title, message, icon_type: self.show_message_box(title, message, icon_type))
+        self.worker.status_signal.connect(
+            lambda title, message, icon_type: self.show_message_box(
+                title, message, icon_type
+            )
+        )
         self.simulation_thread = QThread()
         self.worker.moveToThread(self.simulation_thread)
-        self.worker.moveToThread(self.simulation_thread)
-        self.simulation_thread.finished.connect(self.simulation_thread.deleteLater)
+        self.simulation_thread.finished.connect(
+            self.simulation_thread.deleteLater)
 
         self.simulation_thread.started.connect(self.worker.run)
-        self.simulation_thread.finished.connect(self.simulation_thread.deleteLater)
+        self.simulation_thread.finished.connect(
+            self.simulation_thread.deleteLater)
         self.simulation_thread.finished.connect(self.worker.deleteLater)
         self.simulation_thread.start()
-
-
-
-
 
     def show_message_box(self, title, message, icon_type):
         """
@@ -217,8 +215,8 @@ class Widget(QWidget):
             QMessageBox.warning(self, title, message)
         elif icon_type == "critical":
             QMessageBox.critical(self, title, message)
-        
-        
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     setup_logging()

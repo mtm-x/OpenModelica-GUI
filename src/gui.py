@@ -9,6 +9,7 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 import src.res_rc
 
+
 class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")

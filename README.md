@@ -15,7 +15,6 @@
 - [Logging](#logging)
 - [Screenshot](#screenshot)
 - [Demostration](#demo)
-- [User Experience](#user-experience)
 
 ---
 
@@ -135,13 +134,6 @@ The application uses a centralized logging system to provide detailed analysis a
 
 https://github.com/user-attachments/assets/305b5387-b8da-42b6-8a65-dfef2e0250cc
 
-
----
-## User Experience
-The OMML provides a smooth and efficient user experience by:
-- Simplifying simulation configuration.
-- Supporting asynchronous operations to prevent freezing of the UI during execution.
-- Providing intuitive feedback and instructions for ease of use.
 
 ---
 
