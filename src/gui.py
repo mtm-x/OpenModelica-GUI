@@ -9,7 +9,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 import src.res_rc
 
-
 class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
@@ -106,13 +105,16 @@ class Ui_Widget(object):
     def retranslateUi(self, Widget):
         _translate = QtCore.QCoreApplication.translate
         Widget.setWindowTitle(_translate("Widget", "Widget"))
+        self.help_but.setToolTip(_translate("Widget", "<html><head/><body><p>Documentation</p></body></html>"))
         self.info_but.setToolTip(_translate("Widget", "<html><head/><body><p>Information</p></body></html>"))
         self.info_but.setWhatsThis(_translate("Widget", "<html><head/><body><p><br/></p></body></html>"))
         self.main_search_line.setPlaceholderText(_translate("Widget", "Choose model .exe"))
         self.folder_but.setText(_translate("Widget", "  Choose Model"))
         self.launch_but.setText(_translate("Widget", "  Launch Model"))
+        self.start_line.setToolTip(_translate("Widget", "<html><head/><body><p><br/></p></body></html>"))
         self.start_line.setPlaceholderText(_translate("Widget", "Enter start time in seconds"))
-        self.stop_line.setToolTip(_translate("Widget", "<html><head/><body><p>hiii</p></body></html>"))
+        self.stop_line.setToolTip(_translate("Widget", "<html><head/><body><p><br/></p></body></html>"))
+        self.stop_line.setWhatsThis(_translate("Widget", "<html><head/><body><p><br/></p><p><br/></p></body></html>"))
         self.stop_line.setPlaceholderText(_translate("Widget", "Enter stop time in seconds"))
         self.label_2.setText(_translate("Widget", "<html><head/><body><p><span style=\" font-style:italic; color:#000000;\">LAUNCHER</span></p></body></html>"))
         self.label_3.setText(_translate("Widget", "Start time:"))

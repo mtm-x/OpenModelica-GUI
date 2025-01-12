@@ -66,6 +66,7 @@ class SimulationWorker(QObject):
                     "critical"
                 )
                 logging.error("STDOUT:\n%s", result.stdout.strip())
+                logging.error("STDERR:\n%s", "May be the model doesn't have necessary dependent files to run")
         except Exception:
             self.status_signal.emit(
                 "Simulation Status",
@@ -83,6 +84,7 @@ class Widget(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.simulation_thread = None
         self.stop_time = None
         self.start_time = None
         self.worker = None
@@ -117,7 +119,15 @@ class Widget(QWidget):
         self.start_time = self.ui.start_line.text().strip()
         self.stop_time = self.ui.stop_line.text().strip()
 
-        if float(self.stop_time) <= float(self.start_time):
+        if not self.start_time or not self.stop_time:
+            self.show_message_box(
+                "Warning",
+                "Start and stop times cannot be empty.",
+                "warning"
+            )
+            return
+
+        if int(self.stop_time) <= int(self.start_time):
             self.show_message_box(
                 "Warning",
                 "Stop time must be greater than start time.",
@@ -130,7 +140,7 @@ class Widget(QWidget):
         Open a file dialog to select the simulation executable.
         """
         self.exe_path, _ = QFileDialog.getOpenFileName(
-            self, "Select Model Executable", "", "All Files (*)"
+            self, "Select Model Executable", "", "*.exe"
         )
         self.ui.main_search_line.setText(self.exe_path)
         if self.exe_path:
@@ -159,6 +169,14 @@ class Widget(QWidget):
         """
         Launch the simulation after validating inputs.
         """
+        if not self.exe_path:
+            self.show_message_box(
+                "Warning",
+                "Please choose a model.",
+                "warning"
+            )
+            return
+
         if not self.start_time or not self.stop_time:
             self.show_message_box(
                 "Warning",
@@ -167,13 +185,7 @@ class Widget(QWidget):
             )
             return
 
-        if not self.exe_path:
-            self.show_message_box(
-                "Warning",
-                "Please select a model file.",
-                "warning"
-            )
-            return
+
 
         self.worker = SimulationWorker(
             self.start_time,
