@@ -1,4 +1,4 @@
-# Open Modelica Model Launcher (OMML)
+# OpenModelica Model Launcher (OML)
 
 ## Contents
 - [Overview](#overview)
@@ -14,31 +14,28 @@
 - [Example Workflow](#example-workflow)
 - [Logging](#logging)
 - [Screenshot](#screenshot)
-- [Demostration](#demo)
+- [Demonstration](#demo)
 
 ---
 
 ## Overview
-The **Open Modelica Model Launcher (OMML)** is a graphical user interface (GUI) application designed to simplify the execution of Modelica simulations. Leveraging its user-friendly interface, OMML enables developers to set up, configure, and launch Modelica-based simulations seamlessly.
-
+The **OpenModelica Model Launcher (OML)** is a graphical user interface (GUI) application designed to simplify the execution of Modelica simulations. 
 This launcher allows you to:
 - Select Modelica model executables.
 - Configure simulation parameters such as start time and stop time.
-- Execute simulations in the background with proper logs and notifications on success or failure.
-
-OMML is designed to enhance usability and streamline the simulation process, providing real-time feedback to ensure an efficient workflow.
+- Execute selected model in the background with proper logs and notifications on success or failure.
 
 ---
 
 ## Features
 - **User-Friendly GUI**:
-    - Intuitive design using PyQt6 for smooth user interaction.
+    - Simple design using PyQt6 for smooth user interaction.
     - Seamless integration of widgets for parameter configuration and model selection.
 
 - **Simulation Control**:
     - Configure simulation start and stop times.
-    - Execute Modelica simulations using the specified parameters.
-    - Asynchronous execution with real-time status updates.
+    - Execute Modelica models using the specified parameters. 
+    - Execution with real-time status updates.
 
 - **Error Handling and Notifications**:
     - Real-time feedback on simulation success or failure with detailed logs.
@@ -62,13 +59,20 @@ The following software and dependencies must be installed on your system:
 
 To install the required Python packages:
    ```bash
-   pip install PyQt6 logging
+   pip install -r requirements.txt
    ```
+   or
+   ```bash
+   pip3 install -r requirements.txt
+   ``` 
+
 
 ### Installation
 1. Clone this repository to your local system:
    ```bash
    git clone https://github.com/mtm-x/OpenModelica-GUI
+   ``` 
+   ```bash
    cd OpenModelica-GUI
    ```
 2. Run the application:
@@ -85,7 +89,7 @@ To install the required Python packages:
 ## Usage Instructions
 
 ### Step 1: Launching the Application
-Run the script `ModelLauncher.py` using Python. The GUI for the OMML will appear.
+Run the script `ModelLauncher.py` using Python. The GUI for the OML will appear.
 
 ### Step 2: Setting up the Simulation
 1. **Select Model File**: Click "Choose File" and browse for the Modelica model executable file.
@@ -101,7 +105,7 @@ Run the script `ModelLauncher.py` using Python. The GUI for the OMML will appear
 - Notifications will display success or failure results.
 
 ### Step 4: Additional Help
-- Click the "Help" button to open the documentation or visit [GitHub Documentation](https://github.com/mtm-x/OpenModelica-GUI).
+- Click the "Help" button to open the documentation.
 - Use the "Info" button to access details about the application.
 
 ---
@@ -126,6 +130,7 @@ The application uses a centralized logging system to provide detailed analysis a
 ---
 
 ## Screenshot
+
 ![Screenshot_20250105_164346](https://github.com/user-attachments/assets/d124cbd5-ec96-4115-9644-708734b5fe12)
 
 ---
