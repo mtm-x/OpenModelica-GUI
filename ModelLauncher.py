@@ -1,160 +1,187 @@
 import logging
 import os
 import subprocess
-import sys
 from webbrowser import open as open_browser
 
-from PyQt6.QtCore import QThread, pyqtSignal, QObject
 from PyQt6.QtGui import QIcon, QIntValidator
-from PyQt6.QtWidgets import QFileDialog, QWidget, QMessageBox, QApplication
+from PyQt6.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
 
 from src.gui import Ui_Widget
 from src.logger import setup_logging
 
 
-class SimulationWorker(QObject):
-    status_signal = pyqtSignal(str, str, str)
+class Launcher(QWidget):
     """
-    A worker thread for asynchronous simulation execution.
-    Signals progress and completion status to the main GUI.
+    A launcher application for executing Modelica models with specific
+    simulation start and stop times.
     """
 
-    def __init__(self, start_time, stop_time, exe_path, working_directory):
-        super(SimulationWorker, self).__init__()
-        self.start_time = start_time
-        self.stop_time = stop_time
-        self.exe_path = exe_path
-        self.working_directory = working_directory
-        logging.info(
-            "Simulation Worker initialized. Start Time: %s, Stop Time: %s, "
-            "Executable Path: %s", start_time, stop_time, exe_path
-        )
-
-    def run(self):
+    def __init__(self):
         """
-        Executes the simulation using a subprocess.
-        Captures and analyzes stdout/stderr for success or failure.
+        Initialize the Launcher class and set up the UI, validators,
+        and event handlers.
         """
-        command = [
-            self.exe_path,
-            f"-override=startTime={self.start_time},stopTime={self.stop_time}"
-        ]
-        logging.info(
-            "Executing command: %s in working directory: %s",
-            command, self.working_directory
-        )
-
-        result = subprocess.run(
-            command,
-            cwd=self.working_directory,
-            capture_output=True,
-            text=True
-        )
-
-        try:
-            if "LOG_SUCCESS" in result.stdout:
-                self.status_signal.emit(
-                    "Simulation Status",
-                    "Simulation successful. Check the log file.",
-                    "info"
-                )
-                logging.info("STDOUT:\n%s", result.stdout.strip())
-            else:
-                self.status_signal.emit(
-                    "Simulation Status",
-                    "Simulation failed. Check the log file.",
-                    "critical"
-                )
-                logging.error("STDOUT:\n%s", result.stdout.strip())
-                logging.error("STDERR:\n%s", "May be the model doesn't have necessary dependent files to run")
-        except Exception:
-            self.status_signal.emit(
-                "Simulation Status",
-                "An error occurred",
-                "critical"
-            )
-            logging.exception("An error occurred during simulation.")
-
-
-class Widget(QWidget):
-    """
-    Main GUI widget for the Modelica Model Launcher application.
-    Enables users to configure and launch simulations.
-    """
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.simulation_thread = None
-        self.stop_time = None
-        self.start_time = None
-        self.worker = None
+        super().__init__()
         self.ui = Ui_Widget()
         self.ui.setupUi(self)
 
-        self.working_directory = None
-        self.exe_path = None
-
-        self.setup_ui()
-        self.setWindowTitle("Open Modelica Model Launcher")
+        # Set window title and icon
+        self.setWindowTitle("OpenModelica Model Launcher")
         self.setWindowIcon(QIcon("res/OML1.ico"))
 
-    def setup_ui(self):
-        """
-        Set up the UI and connect signals to their corresponding slots.
-        """
-        self.ui.launch_but.clicked.connect(self.on_launch_button_clicked)
-        self.ui.folder_but.clicked.connect(self.on_folder_button_clicked)
-        self.ui.help_but.clicked.connect(self.on_help_button_clicked)
-        self.ui.info_but.clicked.connect(self.on_info_button_clicked)
-        self.ui.set_but.clicked.connect(self.on_set_button_clicked)
+        # Initialize variables to hold user selections and input values
+        self.working_directory = None
+        self.exe_path = None
+        self.start_time = None
+        self.stop_time = None
 
-        validator = QIntValidator(0, 1000, self)
+        # Connect UI buttons and fields to their respective event handlers
+        self.ui.set_but.clicked.connect(self.on_set_button)
+        self.ui.folder_but.clicked.connect(self.on_folder_button)
+        self.ui.launch_but.clicked.connect(self.on_launch_button)
+        self.ui.help_but.clicked.connect(self.on_help_button)
+        self.ui.info_but.clicked.connect(self.on_info_button)
+        self.ui.start_line.textChanged.connect(self.text_changed_start)
+        self.ui.stop_line.textChanged.connect(self.text_changed_stop)
+        self.ui.clear_but.clicked.connect(self.clear)
+
+        # Add input validators to restrict start/stop time to integers
+        # within range 0-10000
+        validator = QIntValidator(0, 10000, self)
         self.ui.start_line.setValidator(validator)
         self.ui.stop_line.setValidator(validator)
 
-    def on_set_button_clicked(self):
+    def on_set_button(self):
         """
-        Validate and set start and stop times for the simulation.
+        Handle the set button click event. Validate and log the start and
+        stop time values.
         """
         self.start_time = self.ui.start_line.text().strip()
         self.stop_time = self.ui.stop_line.text().strip()
+        logging.info("Start Time: %s, Stop Time: %s", self.start_time, self.stop_time)
 
+        # Show an error message if either of the input fields is empty.
         if not self.start_time or not self.stop_time:
             self.show_message_box(
-                "Warning",
-                "Start and stop times cannot be empty.",
+                "Error",
+                "Please enter a start and stop time and click set time",
                 "warning"
             )
             return
 
-        if int(self.stop_time) <= int(self.start_time):
+        # Show an error message if stop time <= start time.
+        if self.stop_time <= self.start_time:
             self.show_message_box(
-                "Warning",
-                "Stop time must be greater than start time.",
-                "warning"
+                "Error", "Stop time must be greater than start time", "warning"
             )
             return
 
-    def on_folder_button_clicked(self):
+    def on_folder_button(self):
         """
-        Open a file dialog to select the simulation executable.
+        Handle the folder button click event.
+        Open a file dialog to select the model executable and update the UI
+        and logs with the selection.
         """
         self.exe_path, _ = QFileDialog.getOpenFileName(
             self, "Select Model Executable", "", "*.exe"
         )
-        self.ui.main_search_line.setText(self.exe_path)
+        # Extract the file name and update the UI and logs.
         if self.exe_path:
+            file_name = os.path.basename(self.exe_path)
             self.working_directory = os.path.dirname(self.exe_path)
+            self.ui.main_label.setText(f"Selected Model: {file_name}")
+            logging.info("Selected Model: %s", file_name)
+            logging.info("Model Path: %s", self.exe_path)
 
-    def on_help_button_clicked(self):
+    def on_launch_button(self):
         """
-        Open the help/documentation URL in the default browser.
+        Handle the launch button click event.
+        Validate inputs and execute the selected executable as a subprocess.
+        """
+        # Validate all necessary inputs and selections before launching.
+        if not self.exe_path:
+            self.show_message_box(
+                "Error", "Please select a model executable", "warning"
+            )
+            return
+        if not self.start_time or not self.stop_time:
+            self.show_message_box(
+                "Error", "Please enter a start and stop time", "warning"
+            )
+            return
+        if self.stop_time <= self.start_time:
+            self.show_message_box(
+                "Error", "Stop time must be greater than start time", "warning"
+            )
+            return
+        if not self.working_directory:
+            self.show_message_box(
+                "Error", "Please select a model executable", "warning"
+            )
+            return
+
+        # Run the simulation executable as a subprocess.
+        result = subprocess.run(
+            [
+                self.exe_path,
+                f"-override=startTime={self.start_time},stopTime={self.stop_time}",
+            ],
+            cwd=self.working_directory, capture_output=True, text=True
+        )
+
+        # Handle simulation results and show appropriate message.
+        if result.stdout:
+            if "LOG_SUCCESS" in result.stdout:
+                logging.info("STDOUT:\n%s", result.stdout.strip())
+                self.show_message_box(
+                    "Simulation Status",
+                    "Simulation successful. Check the log file.",
+                    "info"
+                )
+            else:
+                logging.error("STDOUT:\n%s", result.stdout.strip())
+                logging.error(
+                    "STDERR:\nModel may not have necessary dependent files "
+                    "to run the simulation"
+                )
+                self.show_message_box(
+                    "Simulation Status",
+                    "Simulation failed. Check the log file.",
+                    "critical"
+                )
+        else:
+            logging.exception("An error occurred during simulation.")
+            self.show_message_box(
+                "Simulation Status", "An error occurred", "critical"
+            )
+
+    def text_changed_stop(self):
+        """
+        Handle the event when the stop time text field value is changed.
+        Clear the stop time value if the field is empty.
+        """
+        if not self.ui.stop_line.text():
+            self.stop_time = None
+
+    def text_changed_start(self):
+        """
+        Handle the event when the start time text field value is changed.
+        Clear the start time value if the field is empty.
+        """
+        if not self.ui.start_line.text():
+            self.start_time = None
+
+    @staticmethod
+    def on_help_button():
+        """
+        Open the GitHub repository URL in the default web browser for help
+        and additional information.
         """
         open_browser("https://github.com/mtm-x/OpenModelica-GUI")
 
-    def on_info_button_clicked(self):
+    def on_info_button(self):
         """
-        Show application information in a message box.
+        Show an informational message about the application and its purpose.
         """
         self.show_message_box(
             "Information",
@@ -165,73 +192,37 @@ class Widget(QWidget):
             "info"
         )
 
-    def on_launch_button_clicked(self):
+    def clear(self):
         """
-        Launch the simulation after validating inputs.
+        Reset the UI and internal states, clearing model selection and
+        associated variables.
         """
-        if not self.exe_path:
-            self.show_message_box(
-                "Warning",
-                "Please choose a model.",
-                "warning"
-            )
-            return
-
-        if not self.start_time or not self.stop_time:
-            self.show_message_box(
-                "Warning",
-                "Please enter valid start and stop times.",
-                "warning"
-            )
-            return
-
-
-
-        self.worker = SimulationWorker(
-            self.start_time,
-            self.stop_time,
-            self.exe_path,
-            self.working_directory
-        )
-        self.ui.stop_line.clear()
-        self.ui.start_line.clear()
-        self.ui.main_search_line.clear()
-        self.exe_path = None
+        self.ui.main_label.setText("Model: no model selected")
         self.working_directory = None
-        self.stop_time = None
-        self.start_time = None
-
-        self.worker.status_signal.connect(
-            lambda title, message, icon_type: self.show_message_box(
-                title, message, icon_type
-            )
-        )
-        self.simulation_thread = QThread()
-        self.worker.moveToThread(self.simulation_thread)
-        self.simulation_thread.finished.connect(
-            self.simulation_thread.deleteLater)
-
-        self.simulation_thread.started.connect(self.worker.run)
-        self.simulation_thread.finished.connect(
-            self.simulation_thread.deleteLater)
-        self.simulation_thread.finished.connect(self.worker.deleteLater)
-        self.simulation_thread.start()
+        self.exe_path = None
+        logging.info("Model and working directory cleared")
 
     def show_message_box(self, title, message, icon_type):
         """
-        Show a message box with the given title, message, and icon type.
+        Display a message box with the specified title, message, and icon type.
+
+        :title: The title of the message box.
+        :message: The message content to display.
+        :icon_type: The type of icon to use ('info', 'warning', or 'critical').
         """
-        if icon_type == "info":
-            QMessageBox.information(self, title, message)
-        elif icon_type == "warning":
-            QMessageBox.warning(self, title, message)
-        elif icon_type == "critical":
-            QMessageBox.critical(self, title, message)
+        message_box = {
+            "info": QMessageBox.information,
+            "warning": QMessageBox.warning,
+            "critical": QMessageBox.critical
+        }.get(icon_type)
+
+        if message_box:
+            message_box(self, title, message)
 
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    setup_logging()
-    widget = Widget()
-    widget.show()
-    sys.exit(app.exec())
+# Create and run the application.
+app = QApplication([])
+setup_logging()  # Set up application logging.
+window = Launcher()
+window.show()
+app.exec()
