@@ -131,13 +131,16 @@ The application uses a centralized logging system to provide detailed analysis a
 
 ## Screenshot
 
-![Screenshot_20250105_164346](https://github.com/user-attachments/assets/d124cbd5-ec96-4115-9644-708734b5fe12)
+![Screenshot 2025-01-13 234355](https://github.com/user-attachments/assets/b0bbb186-1ea0-47ea-9be9-b7f2849ed87a)
 
 ---
 ## Demo
 
 
-https://github.com/user-attachments/assets/305b5387-b8da-42b6-8a65-dfef2e0250cc
+
+
+https://github.com/user-attachments/assets/20197085-af89-4103-90bc-e576835ddaa2
+
 
 
 ---
