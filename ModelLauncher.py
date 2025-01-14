@@ -134,7 +134,6 @@ class Launcher(QWidget):
                 cwd=self.working_directory,
                 capture_output=True,
                 text=True,
-                check=True
             )
         except subprocess.CalledProcessError as e:
             logging.error("Subprocess failed: %s", e.stderr)
