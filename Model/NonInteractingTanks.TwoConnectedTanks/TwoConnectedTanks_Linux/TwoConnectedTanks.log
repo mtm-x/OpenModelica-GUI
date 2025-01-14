@@ -1,0 +1,26 @@
+/home/lotus/Downloads/TwoConnectedTanks/TwoConnectedTanks_Modified/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks -port=46569 -logFormat=xmltcp -override=startTime=0,stopTime=1,stepSize=0.002,tolerance=1e-06,solver=dassl,outputFormat=mat,variableFilter=.* -r=/home/lotus/Downloads/TwoConnectedTanks/TwoConnectedTanks_Modified/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks_res.mat -w -lv=LOG_STDOUT,LOG_ASSERT,LOG_STATS -inputPath=/home/lotus/Downloads/TwoConnectedTanks/TwoConnectedTanks_Modified/NonInteractingTanks.TwoConnectedTanks -outputPath=/home/lotus/Downloads/TwoConnectedTanks/TwoConnectedTanks_Modified/NonInteractingTanks.TwoConnectedTanks
+The initialization finished successfully without homotopy method.
+### STATISTICS ###
+timer
+  0.00105447s          reading init.xml
+  6.0915e-05s          reading info.xml
+ 0.000313329s [ 13.7%] pre-initialization
+  3.9875e-05s [  1.7%] initialization
+   2.445e-06s [  0.1%] steps
+ 0.000301316s [ 13.1%] solver (excl. callbacks)
+ 0.000211271s [  9.2%] creating output-file
+  4.0078e-05s [  1.7%] event-handling
+  3.8247e-05s [  1.7%] overhead
+  0.00134768s [ 58.7%] simulation
+  0.00229424s [100.0%] total
+events
+    0 state events
+    0 time events
+solver: dassl
+   22 steps taken
+   22 calls of functionODE
+   21 evaluations of jacobian
+    0 error test failures
+    0 convergence test failures
+6.855e-06s time of jacobian evaluation
+The simulation finished successfully.

@@ -87,7 +87,7 @@ class Launcher(QWidget):
         and logs with the selection.
         """
         self.exe_path, _ = QFileDialog.getOpenFileName(
-            self, "Select Model ", "", "*.exe"
+            self, "Select Model "
         )
         # Extract the file name and update the UI and logs.
         if self.exe_path:
