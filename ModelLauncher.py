@@ -9,6 +9,8 @@ from PyQt6.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
 from src.gui import Ui_Widget
 from src.logger import setup_logging
 
+FILE_DIALOG_TITLE = "Please Select Model Executable"
+
 
 class Launcher(QWidget):
     """
@@ -58,7 +60,9 @@ class Launcher(QWidget):
         """
         self.start_time = self.ui.start_line.text().strip()
         self.stop_time = self.ui.stop_line.text().strip()
-        logging.info("Start Time: %s, Stop Time: %s", self.start_time, self.stop_time)
+        logging.info(
+             "Start Time: %s, Stop Time: %s", self.start_time, self.stop_time
+                    )
 
         # Show an error message if either of the input fields is empty.
         if not self.start_time or not self.stop_time:
@@ -83,7 +87,7 @@ class Launcher(QWidget):
         and logs with the selection.
         """
         self.exe_path, _ = QFileDialog.getOpenFileName(
-            self, "Select Model Executable", "", "*.exe"
+            self, "Select Model ", "", "*.exe"
         )
         # Extract the file name and update the UI and logs.
         if self.exe_path:
@@ -101,7 +105,7 @@ class Launcher(QWidget):
         # Validate all necessary inputs and selections before launching.
         if not self.exe_path:
             self.show_message_box(
-                "Error", "Please select a model executable", "warning"
+                "Error", FILE_DIALOG_TITLE, "warning"
             )
             return
         if not self.start_time or not self.stop_time:
@@ -116,18 +120,29 @@ class Launcher(QWidget):
             return
         if not self.working_directory:
             self.show_message_box(
-                "Error", "Please select a model executable", "warning"
+                "Error", FILE_DIALOG_TITLE, "warning"
             )
             return
 
         # Run the simulation executable as a subprocess.
-        result = subprocess.run(
-            [
-                self.exe_path,
-                f"-override=startTime={self.start_time},stopTime={self.stop_time}",
-            ],
-            cwd=self.working_directory, capture_output=True, text=True
-        )
+        try:
+            result = subprocess.run(
+                [
+                    self.exe_path,
+                    f"-override=startTime={self.start_time},stopTime={self.stop_time}",
+                ],
+                cwd=self.working_directory,
+                capture_output=True,
+                text=True,
+                check=True
+            )
+        except subprocess.CalledProcessError as e:
+            logging.error("Subprocess failed: %s", e.stderr)
+            self.show_message_box("Error",
+                                  "Simulation failed to run.",
+                                  "critical"
+                                  )
+            return
 
         # Handle simulation results and show appropriate message.
         if result.stdout:
@@ -197,7 +212,7 @@ class Launcher(QWidget):
         Reset the UI and internal states, clearing model selection and
         associated variables.
         """
-        self.ui.main_label.setText("Model: no model selected")
+        self.ui.main_label.setText("Model : no model selected")
         self.working_directory = None
         self.exe_path = None
         logging.info("Model and working directory cleared")
@@ -210,14 +225,12 @@ class Launcher(QWidget):
         :message: The message content to display.
         :icon_type: The type of icon to use ('info', 'warning', or 'critical').
         """
-        message_box = {
-            "info": QMessageBox.information,
-            "warning": QMessageBox.warning,
-            "critical": QMessageBox.critical
-        }.get(icon_type)
-
-        if message_box:
-            message_box(self, title, message)
+        if icon_type == "info":
+            QMessageBox.information(self, title, message)
+        elif icon_type == "warning":
+            QMessageBox.warning(self, title, message)
+        elif icon_type == "critical":
+            QMessageBox.critical(self, title, message)
 
 
 # Create and run the application.
