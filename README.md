@@ -1,20 +1,22 @@
 # OpenModelica Model Launcher (OML)
 
 ## Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Getting Started](#getting-started)
+- [OpenModelica Model Launcher (OML)](#openmodelica-model-launcher-oml)
+  - [Contents](#contents)
+  - [Overview](#overview)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
-- [Usage Instructions](#usage-instructions)
+  - [Usage Instructions](#usage-instructions)
     - [Step 1: Launching the Application](#step-1-launching-the-application)
     - [Step 2: Setting up the Simulation](#step-2-setting-up-the-simulation)
     - [Step 3: Running the Simulation](#step-3-running-the-simulation)
     - [Step 4: Additional Help](#step-4-additional-help)
-- [Example Workflow](#example-workflow)
-- [Logging](#logging)
-- [Screenshot](#screenshot)
-- [Demonstration](#demo)
+  - [Example Workflow](#example-workflow)
+  - [Logging](#logging)
+  - [Screenshot](#screenshot)
+  - [Demo](#demo)
 
 ---
 
@@ -31,6 +33,10 @@ This launcher allows you to:
 - **User-Friendly GUI**:
     - Simple design using PyQt6 for smooth user interaction.
     - Seamless integration of widgets for parameter configuration and model selection.
+
+- **Platform Support**:
+    - **Linux**
+    - **Windows**
 
 - **Simulation Control**:
     - Configure simulation start and stop times.
