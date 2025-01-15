@@ -1,5 +1,6 @@
 import logging
 import os
+import platform
 import subprocess
 from webbrowser import open as open_browser
 
@@ -86,9 +87,14 @@ class Launcher(QWidget):
         Open a file dialog to select the model executable and update the UI
         and logs with the selection.
         """
-        self.exe_path, _ = QFileDialog.getOpenFileName(
-            self, "Select Model "
-        )
+        if platform.system() == "Windows":
+            self.exe_path, _ = QFileDialog.getOpenFileName(
+                self, "Select Model ","","*.exe"
+            )
+        elif platform.system() == "Linux":
+            self.exe_path, _ = QFileDialog.getOpenFileName(
+                self, "Select Model "
+            )
         # Extract the file name and update the UI and logs.
         if self.exe_path:
             file_name = os.path.basename(self.exe_path)
@@ -126,6 +132,10 @@ class Launcher(QWidget):
 
         # Run the simulation executable as a subprocess.
         try:
+            if not os.path.isfile(self.exe_path):
+                raise FileNotFoundError(
+                    f"File not found: {self.exe_path}"
+                )
             result = subprocess.run(
                 [
                     self.exe_path,
@@ -134,6 +144,14 @@ class Launcher(QWidget):
                 cwd=self.working_directory,
                 capture_output=True,
                 text=True,
+            )
+
+        except FileNotFoundError as e:
+            logging.error("File not found: %s", e.filename)
+            self.show_message_box(
+                "Error",
+                f"File not found: {e.filename}",
+                "critical"
             )
         except subprocess.CalledProcessError as e:
             logging.error("Subprocess failed: %s", e.stderr)
