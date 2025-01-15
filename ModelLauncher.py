@@ -89,7 +89,7 @@ class Launcher(QWidget):
         """
         if platform.system() == "Windows":
             self.exe_path, _ = QFileDialog.getOpenFileName(
-                self, "Select Model ","","*.exe"
+                self, "Select Model ", "", "*.exe"
             )
         elif platform.system() == "Linux":
             self.exe_path, _ = QFileDialog.getOpenFileName(
