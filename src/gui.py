@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\form.ui'
+# Form implementation generated from reading ui file 'form.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
 #
@@ -17,73 +17,111 @@ class Ui_Widget(object):
         Widget.setMaximumSize(QtCore.QSize(480, 330))
         self.help_but = QtWidgets.QPushButton(parent=Widget)
         self.help_but.setGeometry(QtCore.QRect(30, 190, 51, 51))
+        self.help_but.setStyleSheet("QPushButton {\n"
+"    background-color: #EAEAEA; /* Light gray background */\n"
+"    color: #333333;           /* Dark gray text */\n"
+"    border: 1px solid #D3D3D3; /* Subtle border */\n"
+"    border-radius: 6px;        /* Rounded corners */\n"
+"    padding: 8px 12px;         /* Comfortable padding */\n"
+"    font-size: 13px;           /* Font size */\n"
+"    font-weight: bold;\n"
+"             /* Bold text */\n"
+"    font:  \"Product Sans\";\n"
+"    font: 700  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #C8C8C8; /* Even darker gray when clicked */\n"
+"}\n"
+"\n"
+"\n"
+"")
         self.help_but.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/res/question.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icons/res/document.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.help_but.setIcon(icon)
-        self.help_but.setIconSize(QtCore.QSize(22, 22))
+        self.help_but.setIconSize(QtCore.QSize(20, 20))
         self.help_but.setObjectName("help_but")
         self.info_but = QtWidgets.QPushButton(parent=Widget)
         self.info_but.setGeometry(QtCore.QRect(30, 260, 51, 51))
+        self.info_but.setStyleSheet("QPushButton {\n"
+"    background-color: #EAEAEA; /* Light gray background */\n"
+"    color: #333333;           /* Dark gray text */\n"
+"    border: 1px solid #D3D3D3; /* Subtle border */\n"
+"    border-radius: 6px;        /* Rounded corners */\n"
+"    padding: 8px 12px;         /* Comfortable padding */\n"
+"    font-size: 13px;           /* Font size */\n"
+"    font-weight: bold;\n"
+"             /* Bold text */\n"
+"    font:  \"Product Sans\";\n"
+"    font: 700  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #C8C8C8; /* Even darker gray when clicked */\n"
+"}\n"
+"\n"
+"")
         self.info_but.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/res/info.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/icons/res/interrogation.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.info_but.setIcon(icon1)
-        self.info_but.setIconSize(QtCore.QSize(21, 21))
+        self.info_but.setIconSize(QtCore.QSize(18, 18))
         self.info_but.setObjectName("info_but")
-        self.folder_but = QtWidgets.QPushButton(parent=Widget)
-        self.folder_but.setGeometry(QtCore.QRect(130, 90, 161, 41))
-        self.folder_but.setStyleSheet("font: 8pt \"Poppins\";")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icons/res/folder (2).png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.folder_but.setIcon(icon2)
-        self.folder_but.setIconSize(QtCore.QSize(24, 24))
-        self.folder_but.setObjectName("folder_but")
-        self.launch_but = QtWidgets.QPushButton(parent=Widget)
-        self.launch_but.setGeometry(QtCore.QRect(290, 90, 171, 41))
-        self.launch_but.setStyleSheet("font: 8pt \"Poppins\";")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/res/rocket.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.launch_but.setIcon(icon3)
-        self.launch_but.setIconSize(QtCore.QSize(22, 22))
-        self.launch_but.setObjectName("launch_but")
-        self.start_line = QtWidgets.QLineEdit(parent=Widget)
-        self.start_line.setGeometry(QtCore.QRect(130, 190, 191, 41))
-        self.start_line.setStyleSheet("font: 9pt \"Product Sans\";")
-        self.start_line.setText("")
-        self.start_line.setClearButtonEnabled(True)
-        self.start_line.setObjectName("start_line")
-        self.stop_line = QtWidgets.QLineEdit(parent=Widget)
-        self.stop_line.setGeometry(QtCore.QRect(130, 270, 191, 41))
-        self.stop_line.setStyleSheet("font: 9pt \"Product Sans\";\n"
-"")
-        self.stop_line.setClearButtonEnabled(True)
-        self.stop_line.setObjectName("stop_line")
         self.label = QtWidgets.QLabel(parent=Widget)
-        self.label.setGeometry(QtCore.QRect(30, 30, 51, 51))
+        self.label.setGeometry(QtCore.QRect(10, 40, 51, 51))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap(":/icons/res/openmodelica.png"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(parent=Widget)
-        self.label_2.setGeometry(QtCore.QRect(30, 70, 81, 21))
-        self.label_2.setStyleSheet("\n"
-"font: 600 9pt \"Poppins\";")
+        self.label_2.setGeometry(QtCore.QRect(0, 70, 121, 41))
+        self.label_2.setStyleSheet("QLabel {\n"
+"    color: #333333;           /* Dark gray for text */\n"
+"    font-size: 17px;          /* Large font for emphasis */\n"
+"    font-weight: bold;        /* Bold text for prominence */\n"
+"    background: none;         /* Transparent background */\n"
+"    padding: 5px 10px;        /* Add padding for spacing */\n"
+"    border: none;   \n"
+"    text-align: center;       /* Centered text */\n"
+"}\n"
+"")
         self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(parent=Widget)
-        self.label_3.setGeometry(QtCore.QRect(140, 165, 81, 21))
-        self.label_3.setStyleSheet("font: 10pt \"Poppins\";")
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(parent=Widget)
-        self.label_4.setGeometry(QtCore.QRect(140, 240, 81, 21))
-        self.label_4.setStyleSheet("font: 10pt \"Poppins\";")
-        self.label_4.setObjectName("label_4")
         self.set_but = QtWidgets.QPushButton(parent=Widget)
-        self.set_but.setGeometry(QtCore.QRect(340, 190, 121, 121))
-        self.set_but.setStyleSheet("font: 9pt \"Poppins\";")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icons/res/settings.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.set_but.setIcon(icon4)
+        self.set_but.setGeometry(QtCore.QRect(360, 180, 101, 51))
+        self.set_but.setStyleSheet("QPushButton {\n"
+"    background-color: #EAEAEA; /* Light gray background */\n"
+"    color: #333333;           /* Dark gray text */\n"
+"    border: 1px solid #D3D3D3; /* Subtle border */\n"
+"    border-radius: 6px;        /* Rounded corners */\n"
+"    padding: 8px 12px;         /* Comfortable padding */\n"
+"    font-size: 13px;           /* Font size */\n"
+"    font-weight: bold;\n"
+"             /* Bold text */\n"
+"    font:  \"Product Sans\";\n"
+"    font: 700  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #F2F2F2; /* Pale gray background for disabled */\n"
+"    color: #A9A9A9;            /* Gray text for disabled state */\n"
+"}\n"
+"")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/icons/res/time-fast.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.set_but.setIcon(icon2)
         self.set_but.setObjectName("set_but")
         self.main_label = QtWidgets.QLabel(parent=Widget)
         self.main_label.setGeometry(QtCore.QRect(140, 40, 271, 31))
@@ -91,11 +129,163 @@ class Ui_Widget(object):
         self.main_label.setObjectName("main_label")
         self.clear_but = QtWidgets.QPushButton(parent=Widget)
         self.clear_but.setGeometry(QtCore.QRect(420, 30, 41, 41))
+        self.clear_but.setStyleSheet("QPushButton {\n"
+"    background-color: #EAEAEA; /* Light gray background */\n"
+"    color: #333333;           /* Dark gray text */\n"
+"    border: 1px solid #D3D3D3; /* Subtle border */\n"
+"    border-radius: 6px;        /* Rounded corners */\n"
+"    padding: 8px 12px;         /* Comfortable padding */\n"
+"    font-size: 13px;           /* Font size */\n"
+"    font-weight: bold;\n"
+"             /* Bold text */\n"
+"    font:  \"Product Sans\";\n"
+"    font: 700  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #C8C8C8; /* Even darker gray when clicked */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #F2F2F2; /* Pale gray background for disabled */\n"
+"    color: #A9A9A9;            /* Gray text for disabled state */\n"
+"}\n"
+"")
         self.clear_but.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/res/clear.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.clear_but.setIcon(icon5)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/icons/res/clear-alt.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.clear_but.setIcon(icon3)
         self.clear_but.setObjectName("clear_but")
+        self.groupBox = QtWidgets.QGroupBox(parent=Widget)
+        self.groupBox.setGeometry(QtCore.QRect(130, 170, 211, 151))
+        self.groupBox.setStyleSheet("font: 11pt \"Product Sans\";")
+        self.groupBox.setFlat(False)
+        self.groupBox.setCheckable(False)
+        self.groupBox.setObjectName("groupBox")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_3 = QtWidgets.QLabel(parent=self.groupBox)
+        self.label_3.setStyleSheet("font: 10pt \"Product Sans\";")
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout.addWidget(self.label_3)
+        self.start_line = QtWidgets.QLineEdit(parent=self.groupBox)
+        self.start_line.setStyleSheet("QLineEdit {\n"
+"    background-color: #F5F5F5;  /* Light gray background for input fields */\n"
+"    color: #333333;            /* Dark gray text for readability */\n"
+"    border: 1px solid #D3D3D3; /* Subtle border */\n"
+"    border-radius: 6px;        /* Rounded corners */\n"
+"    padding: 6px 8px;          /* Add padding for comfortable input */\n"
+"    font-size: 13px;   \n"
+"    font:  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 1px solid #0078D4; /* Blue border when focused */\n"
+"    background-color: #FFFFFF; /* Pure white background on focus */\n"
+"    outline: none;             /* Removes the default focus glow */\n"
+"}\n"
+"")
+        self.start_line.setText("")
+        self.start_line.setClearButtonEnabled(True)
+        self.start_line.setObjectName("start_line")
+        self.verticalLayout.addWidget(self.start_line)
+        self.label_4 = QtWidgets.QLabel(parent=self.groupBox)
+        self.label_4.setStyleSheet("font: 10pt \"Product Sans\";")
+        self.label_4.setObjectName("label_4")
+        self.verticalLayout.addWidget(self.label_4)
+        self.stop_line = QtWidgets.QLineEdit(parent=self.groupBox)
+        self.stop_line.setStyleSheet("QLineEdit {\n"
+"    background-color: #F5F5F5;  /* Light gray background for input fields */\n"
+"    color: #333333;            /* Dark gray text for readability */\n"
+"    border: 1px solid #D3D3D3; /* Subtle border */\n"
+"    border-radius: 6px;        /* Rounded corners */\n"
+"    padding: 6px 8px;          /* Add padding for comfortable input */\n"
+"    font-size: 13px;   \n"
+"    font:  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QLineEdit:focus {\n"
+"    border: 1px solid #0078D4; /* Blue border when focused */\n"
+"    background-color: #FFFFFF; /* Pure white background on focus */\n"
+"    outline: none;             /* Removes the default focus glow */\n"
+"}\n"
+"")
+        self.stop_line.setClearButtonEnabled(True)
+        self.stop_line.setObjectName("stop_line")
+        self.verticalLayout.addWidget(self.stop_line)
+        self.horizontalWidget = QtWidgets.QWidget(parent=Widget)
+        self.horizontalWidget.setGeometry(QtCore.QRect(130, 80, 331, 61))
+        self.horizontalWidget.setObjectName("horizontalWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.folder_but = QtWidgets.QPushButton(parent=self.horizontalWidget)
+        self.folder_but.setStyleSheet("QPushButton {\n"
+"    background-color: #0078D4; /* Blue background */\n"
+"    color: white;             /* White text */\n"
+"    border: none;             /* No border */\n"
+"    border-radius: 6px;       /* Rounded corners */\n"
+"    padding: 10px 15px;       /* Padding for a comfortable button size */\n"
+"    font-size: 14px;          /* Font size */\n"
+"    font-weight: bold;        /* Bold text */\n"
+"    font: \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #005A9E; /* Darker blue on hover */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #003E73; /* Even darker blue when clicked */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #A9A9A9; /* Gray background for disabled state */\n"
+"    color: white;              /* Keep white text for disabled state */\n"
+"}\n"
+"")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icons/res/folder-open.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.folder_but.setIcon(icon4)
+        self.folder_but.setIconSize(QtCore.QSize(22, 22))
+        self.folder_but.setObjectName("folder_but")
+        self.horizontalLayout.addWidget(self.folder_but)
+        self.launch_but = QtWidgets.QPushButton(parent=self.horizontalWidget)
+        self.launch_but.setStyleSheet("QPushButton {\n"
+"    background-color: #28A745; /* Green background */\n"
+"    color: white;             /* White text */\n"
+"    border: none;             /* No border */\n"
+"    border-radius: 6px;       /* Rounded corners */\n"
+"    padding: 10px 15px;       /* Padding for a comfortable button size */\n"
+"    font-size: 14px;          /* Font size */\n"
+"    font-weight: bold;   \n"
+"         /* Bold text */\n"
+"    font:   \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #218838; /* Darker green on hover */\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #1E7E34; /* Even darker green when clicked */\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #A9A9A9; /* Gray background for disabled state */\n"
+"    color: white;              /* Keep white text for disabled state */\n"
+"}\n"
+"")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/icons/res/rocket-hand.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.launch_but.setIcon(icon5)
+        self.launch_but.setIconSize(QtCore.QSize(22, 22))
+        self.launch_but.setObjectName("launch_but")
+        self.horizontalLayout.addWidget(self.launch_but)
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
@@ -106,15 +296,14 @@ class Ui_Widget(object):
         self.help_but.setToolTip(_translate("Widget", "<html><head/><body><p>Documentation</p></body></html>"))
         self.info_but.setToolTip(_translate("Widget", "<html><head/><body><p>Information</p></body></html>"))
         self.info_but.setWhatsThis(_translate("Widget", "<html><head/><body><p><br/></p></body></html>"))
-        self.folder_but.setText(_translate("Widget", "  Choose Model"))
-        self.launch_but.setText(_translate("Widget", "  Launch Model"))
-        self.start_line.setToolTip(_translate("Widget", "<html><head/><body><p><br/></p></body></html>"))
-        self.start_line.setPlaceholderText(_translate("Widget", "Enter start time in seconds"))
-        self.stop_line.setToolTip(_translate("Widget", "<html><head/><body><p><br/></p></body></html>"))
-        self.stop_line.setWhatsThis(_translate("Widget", "<html><head/><body><p><br/></p><p><br/></p></body></html>"))
-        self.stop_line.setPlaceholderText(_translate("Widget", "Enter stop time in seconds"))
         self.label_2.setText(_translate("Widget", "<html><head/><body><p><span style=\" font-style:italic; color:#000000;\">LAUNCHER</span></p></body></html>"))
-        self.label_3.setText(_translate("Widget", "Start time:"))
-        self.label_4.setText(_translate("Widget", "Stop time:"))
         self.set_but.setText(_translate("Widget", "  Set Time"))
         self.main_label.setText(_translate("Widget", "Model : no model selected"))
+        self.clear_but.setToolTip(_translate("Widget", "<html><head/><body><p>clear</p></body></html>"))
+        self.groupBox.setTitle(_translate("Widget", "Simulation Settings"))
+        self.label_3.setText(_translate("Widget", "Start time:"))
+        self.start_line.setPlaceholderText(_translate("Widget", "Enter start time in seconds"))
+        self.label_4.setText(_translate("Widget", "Stop time:"))
+        self.stop_line.setPlaceholderText(_translate("Widget", "Enter stop time in seconds"))
+        self.folder_but.setText(_translate("Widget", "  Choose Model"))
+        self.launch_but.setText(_translate("Widget", "  Launch Model"))
