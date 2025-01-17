@@ -18,26 +18,17 @@ class Ui_Widget(object):
         self.help_but = QtWidgets.QPushButton(parent=Widget)
         self.help_but.setGeometry(QtCore.QRect(30, 190, 51, 51))
         self.help_but.setStyleSheet("QPushButton {\n"
-"    background-color: #EAEAEA; /* Light gray background */\n"
-"    color: #333333;           /* Dark gray text */\n"
-"    border: 1px solid #D3D3D3; /* Subtle border */\n"
-"    border-radius: 6px;        /* Rounded corners */\n"
-"    padding: 8px 12px;         /* Comfortable padding */\n"
-"    font-size: 13px;           /* Font size */\n"
-"    font-weight: bold;\n"
-"             /* Bold text */\n"
-"    font:  \"Product Sans\";\n"
+"    background-color: #EAEAEA; \n"
+"    color: #333333;  \n"
+"    border: 1px solid #D3D3D3; \n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;      \n"
 "    font: 700  \"Product Sans\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
+"    background-color: #D6D6D6;\n"
 "}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #C8C8C8; /* Even darker gray when clicked */\n"
-"}\n"
-"\n"
 "\n"
 "")
         self.help_but.setText("")
@@ -49,24 +40,16 @@ class Ui_Widget(object):
         self.info_but = QtWidgets.QPushButton(parent=Widget)
         self.info_but.setGeometry(QtCore.QRect(30, 260, 51, 51))
         self.info_but.setStyleSheet("QPushButton {\n"
-"    background-color: #EAEAEA; /* Light gray background */\n"
-"    color: #333333;           /* Dark gray text */\n"
-"    border: 1px solid #D3D3D3; /* Subtle border */\n"
-"    border-radius: 6px;        /* Rounded corners */\n"
-"    padding: 8px 12px;         /* Comfortable padding */\n"
-"    font-size: 13px;           /* Font size */\n"
-"    font-weight: bold;\n"
-"             /* Bold text */\n"
-"    font:  \"Product Sans\";\n"
+"    background-color: #EAEAEA; \n"
+"    color: #333333;  \n"
+"    border: 1px solid #D3D3D3; \n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;      \n"
 "    font: 700  \"Product Sans\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #C8C8C8; /* Even darker gray when clicked */\n"
+"    background-color: #D6D6D6;\n"
 "}\n"
 "\n"
 "")
@@ -98,25 +81,21 @@ class Ui_Widget(object):
         self.set_but = QtWidgets.QPushButton(parent=Widget)
         self.set_but.setGeometry(QtCore.QRect(360, 180, 101, 51))
         self.set_but.setStyleSheet("QPushButton {\n"
-"    background-color: #EAEAEA; /* Light gray background */\n"
-"    color: #333333;           /* Dark gray text */\n"
-"    border: 1px solid #D3D3D3; /* Subtle border */\n"
-"    border-radius: 6px;        /* Rounded corners */\n"
-"    padding: 8px 12px;         /* Comfortable padding */\n"
-"    font-size: 13px;           /* Font size */\n"
-"    font-weight: bold;\n"
-"             /* Bold text */\n"
-"    font:  \"Product Sans\";\n"
+"    background-color: #EAEAEA; \n"
+"    color: #333333;  \n"
+"    border: 1px solid #D3D3D3; \n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;      \n"
 "    font: 700  \"Product Sans\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
+"    background-color: #D6D6D6;\n"
 "}\n"
 "\n"
 "QPushButton:disabled {\n"
-"    background-color: #F2F2F2; /* Pale gray background for disabled */\n"
-"    color: #A9A9A9;            /* Gray text for disabled state */\n"
+"    background-color: #F2F2F2;\n"
+"    color: #A9A9A9; \n"
 "}\n"
 "")
         icon2 = QtGui.QIcon()
@@ -130,29 +109,21 @@ class Ui_Widget(object):
         self.clear_but = QtWidgets.QPushButton(parent=Widget)
         self.clear_but.setGeometry(QtCore.QRect(420, 30, 41, 41))
         self.clear_but.setStyleSheet("QPushButton {\n"
-"    background-color: #EAEAEA; /* Light gray background */\n"
-"    color: #333333;           /* Dark gray text */\n"
-"    border: 1px solid #D3D3D3; /* Subtle border */\n"
-"    border-radius: 6px;        /* Rounded corners */\n"
-"    padding: 8px 12px;         /* Comfortable padding */\n"
-"    font-size: 13px;           /* Font size */\n"
-"    font-weight: bold;\n"
-"             /* Bold text */\n"
-"    font:  \"Product Sans\";\n"
+"    background-color: #EAEAEA; \n"
+"    color: #333333;  \n"
+"    border: 1px solid #D3D3D3; \n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;      \n"
 "    font: 700  \"Product Sans\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #D6D6D6; /* Slightly darker gray on hover */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #C8C8C8; /* Even darker gray when clicked */\n"
+"    background-color: #D6D6D6;\n"
 "}\n"
 "\n"
 "QPushButton:disabled {\n"
-"    background-color: #F2F2F2; /* Pale gray background for disabled */\n"
-"    color: #A9A9A9;            /* Gray text for disabled state */\n"
+"    background-color: #F2F2F2;\n"
+"    color: #A9A9A9; \n"
 "}\n"
 "")
         self.clear_but.setText("")
@@ -217,35 +188,29 @@ class Ui_Widget(object):
         self.stop_line.setClearButtonEnabled(True)
         self.stop_line.setObjectName("stop_line")
         self.verticalLayout.addWidget(self.stop_line)
-        self.horizontalWidget = QtWidgets.QWidget(parent=Widget)
-        self.horizontalWidget.setGeometry(QtCore.QRect(130, 80, 331, 61))
-        self.horizontalWidget.setObjectName("horizontalWidget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalWidget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.folder_but = QtWidgets.QPushButton(parent=self.horizontalWidget)
+        self.folder_but = QtWidgets.QPushButton(parent=Widget)
+        self.folder_but.setGeometry(QtCore.QRect(130, 90, 154, 42))
         self.folder_but.setStyleSheet("QPushButton {\n"
-"    background-color: #0078D4; /* Blue background */\n"
-"    color: white;             /* White text */\n"
-"    border: none;             /* No border */\n"
-"    border-radius: 6px;       /* Rounded corners */\n"
-"    padding: 10px 15px;       /* Padding for a comfortable button size */\n"
-"    font-size: 14px;          /* Font size */\n"
-"    font-weight: bold;        /* Bold text */\n"
+"    background-color: #0078D4;\n"
+"    color: white; \n"
+"    border: none;  \n"
+"    border-radius: 6px;    \n"
+"    font-size: 14px;  \n"
+"    font-weight: bold;     \n"
 "    font: \"Product Sans\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #005A9E; /* Darker blue on hover */\n"
+"    background-color: #005A9E; \n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: #003E73; /* Even darker blue when clicked */\n"
+"    background-color: #003E73; \n"
 "}\n"
 "\n"
 "QPushButton:disabled {\n"
-"    background-color: #A9A9A9; /* Gray background for disabled state */\n"
-"    color: white;              /* Keep white text for disabled state */\n"
+"    background-color: #A9A9A9;\n"
+"    color: white;   \n"
 "}\n"
 "")
         icon4 = QtGui.QIcon()
@@ -253,31 +218,29 @@ class Ui_Widget(object):
         self.folder_but.setIcon(icon4)
         self.folder_but.setIconSize(QtCore.QSize(22, 22))
         self.folder_but.setObjectName("folder_but")
-        self.horizontalLayout.addWidget(self.folder_but)
-        self.launch_but = QtWidgets.QPushButton(parent=self.horizontalWidget)
+        self.launch_but = QtWidgets.QPushButton(parent=Widget)
+        self.launch_but.setGeometry(QtCore.QRect(310, 90, 151, 41))
         self.launch_but.setStyleSheet("QPushButton {\n"
-"    background-color: #28A745; /* Green background */\n"
-"    color: white;             /* White text */\n"
-"    border: none;             /* No border */\n"
-"    border-radius: 6px;       /* Rounded corners */\n"
-"    padding: 10px 15px;       /* Padding for a comfortable button size */\n"
-"    font-size: 14px;          /* Font size */\n"
+"    background-color: #28A745; \n"
+"    color: white;         \n"
+"    border: none;            \n"
+"    border-radius: 6px; \n"
+"    font-size: 14px;        \n"
 "    font-weight: bold;   \n"
-"         /* Bold text */\n"
 "    font:   \"Product Sans\";\n"
 "}\n"
 "\n"
 "QPushButton:hover {\n"
-"    background-color: #218838; /* Darker green on hover */\n"
+"    background-color: #218838; \n"
 "}\n"
 "\n"
 "QPushButton:pressed {\n"
-"    background-color: #1E7E34; /* Even darker green when clicked */\n"
+"    background-color: #1E7E34; \n"
 "}\n"
 "\n"
 "QPushButton:disabled {\n"
-"    background-color: #A9A9A9; /* Gray background for disabled state */\n"
-"    color: white;              /* Keep white text for disabled state */\n"
+"    background-color: #A9A9A9; \n"
+"    color: white;         \n"
 "}\n"
 "")
         icon5 = QtGui.QIcon()
@@ -285,7 +248,28 @@ class Ui_Widget(object):
         self.launch_but.setIcon(icon5)
         self.launch_but.setIconSize(QtCore.QSize(22, 22))
         self.launch_but.setObjectName("launch_but")
-        self.horizontalLayout.addWidget(self.launch_but)
+        self.clear_time_but = QtWidgets.QPushButton(parent=Widget)
+        self.clear_time_but.setGeometry(QtCore.QRect(360, 260, 101, 51))
+        self.clear_time_but.setStyleSheet("QPushButton {\n"
+"    background-color: #EAEAEA; \n"
+"    color: #333333;  \n"
+"    border: 1px solid #D3D3D3; \n"
+"    border-radius: 6px;\n"
+"    font-size: 13px;      \n"
+"    font: 700  \"Product Sans\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #D6D6D6;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #F2F2F2;\n"
+"    color: #A9A9A9; \n"
+"}\n"
+"")
+        self.clear_time_but.setIcon(icon3)
+        self.clear_time_but.setObjectName("clear_time_but")
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
@@ -307,3 +291,4 @@ class Ui_Widget(object):
         self.stop_line.setPlaceholderText(_translate("Widget", "Enter stop time in seconds"))
         self.folder_but.setText(_translate("Widget", "  Choose Model"))
         self.launch_but.setText(_translate("Widget", "  Launch Model"))
+        self.clear_time_but.setText(_translate("Widget", "  Clear Time"))

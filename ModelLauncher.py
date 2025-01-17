@@ -47,6 +47,8 @@ class Launcher(QWidget):
         self.ui.start_line.textChanged.connect(self.text_changed_start)
         self.ui.stop_line.textChanged.connect(self.text_changed_stop)
         self.ui.clear_but.clicked.connect(self.clear)
+        self.ui.clear_time_but.clicked.connect(self.clear_time)
+        self.ui.launch_but.setEnabled(False)
 
         # Add input validators to restrict start/stop time to integers
         # within range 0-10000
@@ -97,6 +99,7 @@ class Launcher(QWidget):
             )
         # Extract the file name and update the UI and logs.
         if self.exe_path:
+            self.ui.launch_but.setEnabled(True)
             file_name = os.path.basename(self.exe_path)
             self.working_directory = os.path.dirname(self.exe_path)
             self.ui.main_label.setText(f"Selected Model: {file_name}")
@@ -232,7 +235,18 @@ class Launcher(QWidget):
         self.ui.main_label.setText("Model : no model selected")
         self.working_directory = None
         self.exe_path = None
+        self.ui.launch_but.setEnabled(False)
         logging.info("Model and working directory cleared")
+
+    def clear_time(self):
+        """
+        Clear the start and stop time fields.
+        """
+        self.ui.start_line.clear()
+        self.ui.stop_line.clear()
+        self.start_time = None
+        self.stop_time = None
+        logging.info("Start and stop time cleared")
 
     def show_message_box(self, title, message, icon_type):
         """
