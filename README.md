@@ -2,27 +2,27 @@
 # 🚀 **OpenModelica Model Launcher (OML)** 
 
 ## 📚 **Contents**
-- [ OpenModelica Model Launcher (OML)](#openmodelica-model-launcher-oml)
-  - [Contents](#contents)
-- [ Overview](#overview)
+- [ OpenModelica Model Launcher (OML)](#-openmodelica-model-launcher-oml-)
+  - [Contents](#-contents)
+- [ Overview](#-overview)
 
-- [ Features](#features)
+- [ Features](#-features)
 
-- [ Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-- [ Usage Instructions](#usage-instructions)
-    - [Step 1: Launching the Application](#step-1-launching-the-application)
-    - [Step 2: Setting up the Simulation](#step-2-setting-up-the-simulation)
-    - [Step 3: Running the Simulation](#step-3-running-the-simulation)
-    - [Step 4: Additional Help](#step-4-additional-help)
-- [ Example Workflow](#example-workflow)
+- [ Getting Started](#-getting-started)
+    - [Prerequisites](#-prerequisites)
+    - [Installation](#-installation)
+- [ Usage Instructions](#-usage-instructions)
+    - [Step 1: Launching the Application](#-step-1-launching-the-application)
+    - [Step 2: Setting up the Simulation](#-step-2-setting-up-the-simulation)
+    - [Step 3: Running the Simulation](#-step-3-running-the-simulation)
+    - [Step 4: Additional Help](#-step-4-additional-help)
+- [ Example Workflow](#-example-workflow)
 
-- [ Logging](#logging)
+- [ Logging](#-logging)
 
-- [ Screenshot](#screenshot)
+- [ Screenshot](#-screenshot)
 
-- [ Demo](#demo)
+- [ Demo](#-demo)
 
 ---
 
