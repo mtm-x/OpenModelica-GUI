@@ -144,7 +144,8 @@ The application uses a centralized logging system to provide detailed analysis a
 
 ## 📷 Screenshot
 
-![Screenshot 2025-01-13 234355](https://github.com/user-attachments/assets/b0bbb186-1ea0-47ea-9be9-b7f2849ed87a)
+
+![Screenshot 2025-01-17 135610](https://github.com/user-attachments/assets/4fd28547-0a5c-44b2-8f51-cd37fed7be02)
 
 ---
 ## 🎥 Demo
@@ -152,7 +153,9 @@ The application uses a centralized logging system to provide detailed analysis a
 
 
 
-https://github.com/user-attachments/assets/20197085-af89-4103-90bc-e576835ddaa2
+https://github.com/user-attachments/assets/863a8a87-e399-463b-b2a0-65427910b429
+
+
 
 
 
