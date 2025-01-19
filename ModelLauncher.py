@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
 
 from src.gui import Ui_Widget
 from src.logger import setup_logging
-from src.result import run_simulation
+#from src.result import run_simulation
 
 FILE_DIALOG_TITLE = "Please Select Model Executable"
 
@@ -208,8 +208,8 @@ class Launcher(QWidget):
             self.show_message_box(
                 "Simulation Status", "An error occurred", "critical"
             )
-        if mat :
-            run_simulation("Model/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks_Win/output/result.mat")
+        #if mat :
+            #run_simulation("Model/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks_Win/output/result.mat")
     def text_changed_stop(self):
         """
         Handle the event when the stop time text field value is changed.
