@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'form.ui'
+# Form implementation generated from reading ui file '.\form.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.0
 #
@@ -12,11 +12,17 @@ import src.res_rc
 class Ui_Widget(object):
     def setupUi(self, Widget):
         Widget.setObjectName("Widget")
-        Widget.resize(480, 330)
-        Widget.setMinimumSize(QtCore.QSize(480, 330))
-        Widget.setMaximumSize(QtCore.QSize(480, 330))
+        Widget.resize(580, 391)
+        Widget.setMinimumSize(QtCore.QSize(580, 391))
+        Widget.setMaximumSize(QtCore.QSize(580, 391))
+        font = QtGui.QFont()
+        font.setFamily("Product Sans")
+        Widget.setFont(font)
+        Widget.setMouseTracking(True)
+        Widget.setFocusPolicy(QtCore.Qt.FocusPolicy.ClickFocus)
         self.help_but = QtWidgets.QPushButton(parent=Widget)
-        self.help_but.setGeometry(QtCore.QRect(30, 190, 51, 51))
+        self.help_but.setGeometry(QtCore.QRect(30, 220, 51, 51))
+        self.help_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.help_but.setStyleSheet("QPushButton {\n"
 "    background-color: #EAEAEA; \n"
 "    color: #333333;  \n"
@@ -38,7 +44,8 @@ class Ui_Widget(object):
         self.help_but.setIconSize(QtCore.QSize(20, 20))
         self.help_but.setObjectName("help_but")
         self.info_but = QtWidgets.QPushButton(parent=Widget)
-        self.info_but.setGeometry(QtCore.QRect(30, 260, 51, 51))
+        self.info_but.setGeometry(QtCore.QRect(30, 310, 51, 51))
+        self.info_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.info_but.setStyleSheet("QPushButton {\n"
 "    background-color: #EAEAEA; \n"
 "    color: #333333;  \n"
@@ -79,7 +86,8 @@ class Ui_Widget(object):
 "")
         self.label_2.setObjectName("label_2")
         self.set_but = QtWidgets.QPushButton(parent=Widget)
-        self.set_but.setGeometry(QtCore.QRect(360, 180, 101, 51))
+        self.set_but.setGeometry(QtCore.QRect(400, 180, 101, 51))
+        self.set_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.set_but.setStyleSheet("QPushButton {\n"
 "    background-color: #EAEAEA; \n"
 "    color: #333333;  \n"
@@ -103,11 +111,12 @@ class Ui_Widget(object):
         self.set_but.setIcon(icon2)
         self.set_but.setObjectName("set_but")
         self.main_label = QtWidgets.QLabel(parent=Widget)
-        self.main_label.setGeometry(QtCore.QRect(140, 40, 271, 31))
+        self.main_label.setGeometry(QtCore.QRect(150, 30, 341, 41))
         self.main_label.setStyleSheet("font: 8pt \"Poppins\";")
         self.main_label.setObjectName("main_label")
         self.clear_but = QtWidgets.QPushButton(parent=Widget)
-        self.clear_but.setGeometry(QtCore.QRect(420, 30, 41, 41))
+        self.clear_but.setGeometry(QtCore.QRect(510, 30, 41, 41))
+        self.clear_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.clear_but.setStyleSheet("QPushButton {\n"
 "    background-color: #EAEAEA; \n"
 "    color: #333333;  \n"
@@ -132,7 +141,7 @@ class Ui_Widget(object):
         self.clear_but.setIcon(icon3)
         self.clear_but.setObjectName("clear_but")
         self.groupBox = QtWidgets.QGroupBox(parent=Widget)
-        self.groupBox.setGeometry(QtCore.QRect(130, 170, 211, 151))
+        self.groupBox.setGeometry(QtCore.QRect(130, 170, 241, 191))
         self.groupBox.setStyleSheet("font: 11pt \"Product Sans\";")
         self.groupBox.setFlat(False)
         self.groupBox.setCheckable(False)
@@ -160,6 +169,7 @@ class Ui_Widget(object):
 "    outline: none;             /* Removes the default focus glow */\n"
 "}\n"
 "")
+        self.start_line.setInputMethodHints(QtCore.Qt.InputMethodHint.ImhTime)
         self.start_line.setText("")
         self.start_line.setClearButtonEnabled(True)
         self.start_line.setObjectName("start_line")
@@ -189,7 +199,13 @@ class Ui_Widget(object):
         self.stop_line.setObjectName("stop_line")
         self.verticalLayout.addWidget(self.stop_line)
         self.folder_but = QtWidgets.QPushButton(parent=Widget)
-        self.folder_but.setGeometry(QtCore.QRect(130, 90, 154, 42))
+        self.folder_but.setGeometry(QtCore.QRect(140, 90, 161, 41))
+        font = QtGui.QFont()
+        font.setFamily("Product Sans")
+        font.setBold(False)
+        font.setItalic(False)
+        self.folder_but.setFont(font)
+        self.folder_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.folder_but.setStyleSheet("QPushButton {\n"
 "    background-color: #0078D4;\n"
 "    color: white; \n"
@@ -219,7 +235,13 @@ class Ui_Widget(object):
         self.folder_but.setIconSize(QtCore.QSize(22, 22))
         self.folder_but.setObjectName("folder_but")
         self.launch_but = QtWidgets.QPushButton(parent=Widget)
-        self.launch_but.setGeometry(QtCore.QRect(310, 90, 151, 41))
+        self.launch_but.setGeometry(QtCore.QRect(390, 90, 161, 41))
+        font = QtGui.QFont()
+        font.setFamily("Product Sans")
+        font.setBold(False)
+        font.setItalic(False)
+        self.launch_but.setFont(font)
+        self.launch_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.launch_but.setStyleSheet("QPushButton {\n"
 "    background-color: #28A745; \n"
 "    color: white;         \n"
@@ -249,7 +271,12 @@ class Ui_Widget(object):
         self.launch_but.setIconSize(QtCore.QSize(22, 22))
         self.launch_but.setObjectName("launch_but")
         self.clear_time_but = QtWidgets.QPushButton(parent=Widget)
-        self.clear_time_but.setGeometry(QtCore.QRect(360, 260, 101, 51))
+        self.clear_time_but.setGeometry(QtCore.QRect(400, 240, 101, 51))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setItalic(False)
+        self.clear_time_but.setFont(font)
+        self.clear_time_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.clear_time_but.setStyleSheet("QPushButton {\n"
 "    background-color: #EAEAEA; \n"
 "    color: #333333;  \n"
@@ -270,6 +297,18 @@ class Ui_Widget(object):
 "")
         self.clear_time_but.setIcon(icon3)
         self.clear_time_but.setObjectName("clear_time_but")
+        self.groupBox_2 = QtWidgets.QGroupBox(parent=Widget)
+        self.groupBox_2.setGeometry(QtCore.QRect(400, 300, 131, 61))
+        self.groupBox_2.setStyleSheet("font: 11pt \"Product Sans\";")
+        self.groupBox_2.setFlat(False)
+        self.groupBox_2.setCheckable(False)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.groupBox_2)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.mat_check_but = QtWidgets.QCheckBox(parent=self.groupBox_2)
+        self.mat_check_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.mat_check_but.setObjectName("mat_check_but")
+        self.verticalLayout_2.addWidget(self.mat_check_but)
 
         self.retranslateUi(Widget)
         QtCore.QMetaObject.connectSlotsByName(Widget)
@@ -292,3 +331,5 @@ class Ui_Widget(object):
         self.folder_but.setText(_translate("Widget", "  Choose Model"))
         self.launch_but.setText(_translate("Widget", "  Launch Model"))
         self.clear_time_but.setText(_translate("Widget", "  Clear Time"))
+        self.groupBox_2.setTitle(_translate("Widget", " Output format"))
+        self.mat_check_but.setText(_translate("Widget", ".mat"))

@@ -9,6 +9,7 @@ from PyQt6.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
 
 from src.gui import Ui_Widget
 from src.logger import setup_logging
+from src.result import run_simulation
 
 FILE_DIALOG_TITLE = "Please Select Model Executable"
 
@@ -37,6 +38,7 @@ class Launcher(QWidget):
         self.exe_path = None
         self.start_time = None
         self.stop_time = None
+        self.file_name = None
 
         # Connect UI buttons and fields to their respective event handlers
         self.ui.set_but.clicked.connect(self.on_set_button)
@@ -100,10 +102,10 @@ class Launcher(QWidget):
         # Extract the file name and update the UI and logs.
         if self.exe_path:
             self.ui.launch_but.setEnabled(True)
-            file_name = os.path.basename(self.exe_path)
+            self.file_name = os.path.basename(self.exe_path)
             self.working_directory = os.path.dirname(self.exe_path)
-            self.ui.main_label.setText(f"Selected Model: {file_name}")
-            logging.info("Selected Model: %s", file_name)
+            self.ui.main_label.setText(f"Selected Model: {self.file_name}")
+            logging.info("Selected Model: %s", self.file_name)
             logging.info("Model Path: %s", self.exe_path)
 
     def on_launch_button(self):
@@ -132,22 +134,38 @@ class Launcher(QWidget):
                 "Error", FILE_DIALOG_TITLE, "warning"
             )
             return
-
+        mat = self.ui.mat_check_but.isChecked()
         # Run the simulation executable as a subprocess.
         try:
             if not os.path.isfile(self.exe_path):
                 raise FileNotFoundError(
                     f"File not found: {self.exe_path}"
                 )
-            result = subprocess.run(
-                [
-                    self.exe_path,
-                    f"-override=startTime={self.start_time},stopTime={self.stop_time}",
-                ],
-                cwd=self.working_directory,
-                capture_output=True,
-                text=True,
-            )
+            # Correct the handling of the arguments for 'mat'.
+            if mat:
+                logging.info("Exporting results to output/result.mat")
+                result = subprocess.run(
+                    [
+                        self.exe_path,
+                        f"-override=startTime={self.start_time},stopTime={self.stop_time}",
+                        f"-r=output/result.mat",
+                    ],
+                    cwd=self.working_directory,
+                    capture_output=True,
+                    text=True,
+                )
+
+            else:
+
+                result = subprocess.run(
+                    [
+                        self.exe_path,
+                        f"-override=startTime={self.start_time},stopTime={self.stop_time}"
+                    ],
+                    cwd=self.working_directory,
+                    capture_output=True,
+                    text=True,
+                )
 
         except FileNotFoundError as e:
             logging.error("File not found: %s", e.filename)
@@ -158,10 +176,11 @@ class Launcher(QWidget):
             )
         except subprocess.CalledProcessError as e:
             logging.error("Subprocess failed: %s", e.stderr)
-            self.show_message_box("Error",
-                                  "Simulation failed to run.",
-                                  "critical"
-                                  )
+            self.show_message_box(
+                "Error",
+                "Simulation failed to run.",
+                "critical"
+            )
             return
 
         # Handle simulation results and show appropriate message.
@@ -189,7 +208,8 @@ class Launcher(QWidget):
             self.show_message_box(
                 "Simulation Status", "An error occurred", "critical"
             )
-
+        if mat :
+            run_simulation("Model/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks_Win/output/result.mat")
     def text_changed_stop(self):
         """
         Handle the event when the stop time text field value is changed.
