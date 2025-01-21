@@ -2,19 +2,20 @@ import logging
 import os
 import platform
 import subprocess
+import qdarktheme
 from webbrowser import open as open_browser
 
 from PyQt6.QtGui import QIcon, QIntValidator
-from PyQt6.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
+from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
 
-from src.gui import Ui_Widget
+from src.gui import Ui_MainWindow
 from src.logger import setup_logging
 #from src.result import run_simulation
 
 FILE_DIALOG_TITLE = "Please Select Model Executable"
 
 
-class Launcher(QWidget):
+class Launcher(QMainWindow):
     """
     A launcher application for executing Modelica models with specific
     simulation start and stop times.
@@ -26,12 +27,14 @@ class Launcher(QWidget):
         and event handlers.
         """
         super().__init__()
-        self.ui = Ui_Widget()
+        self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
         # Set window title and icon
         self.setWindowTitle("OpenModelica Model Launcher")
         self.setWindowIcon(QIcon("res/OML1.ico"))
+        qdarktheme.setup_theme("light")
+        self.ui.stackedWidget.setCurrentIndex(0)
 
         # Initialize variables to hold user selections and input values
         self.working_directory = None
@@ -44,9 +47,13 @@ class Launcher(QWidget):
         self.ui.set_but.clicked.connect(self.on_set_button)
         self.ui.folder_but.clicked.connect(self.on_folder_button)
         self.ui.launch_but.clicked.connect(self.on_launch_button)
-        self.ui.help_but.clicked.connect(self.on_help_button)
-        self.ui.info_but.clicked.connect(self.on_info_button)
+        self.ui.doc_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(3))
+        self.ui.info_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(2))
         self.ui.start_line.textChanged.connect(self.text_changed_start)
+        self.ui.home_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
+        self.ui.theme_but.clicked.connect(self.theme)
+        self.ui.git_but.clicked.connect(lambda: open_browser("https://github.com/mtm-x/OpenModelica-GUI"))
+        self.ui.theme_set_but.clicked.connect(self.theme_set)
         self.ui.stop_line.textChanged.connect(self.text_changed_stop)
         self.ui.clear_but.clicked.connect(self.clear)
         self.ui.clear_time_but.clicked.connect(self.clear_time)
@@ -57,6 +64,16 @@ class Launcher(QWidget):
         validator = QIntValidator(0, 10000, self)
         self.ui.start_line.setValidator(validator)
         self.ui.stop_line.setValidator(validator)
+
+
+    def theme(self):
+        self.ui.stackedWidget.setCurrentIndex(1)
+        self.ui.comboBox.clear()
+        self.ui.comboBox.addItems(qdarktheme.get_themes())
+        
+    def theme_set(self):
+        self.change_theme = self.ui.comboBox.currentText()
+        qdarktheme.setup_theme(self.change_theme)
 
     def on_set_button(self):
         """
@@ -226,26 +243,18 @@ class Launcher(QWidget):
         if not self.ui.start_line.text():
             self.start_time = None
 
-    @staticmethod
-    def on_help_button():
+    def on_doc_button(self):
         """
         Open the GitHub repository URL in the default web browser for help
         and additional information.
         """
-        open_browser("https://github.com/mtm-x/OpenModelica-GUI")
+        self.ui.stackedWidget.setCurrentIndex(3)
 
     def on_info_button(self):
         """
         Show an informational message about the application and its purpose.
         """
-        self.show_message_box(
-            "Information",
-            "This is a simple Modelica model launcher. It allows you to "
-            "select a Modelica model and specify the start and stop times "
-            "for the simulation. The simulation will run in the background, "
-            "and you will be notified when it is done.",
-            "info"
-        )
+        self.ui.stackedWidget.setCurrentIndex(2)
 
     def clear(self):
         """
