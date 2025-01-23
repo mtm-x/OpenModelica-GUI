@@ -28,7 +28,7 @@ class Libloader(QThread):
         from scipy.io import loadmat
         from matplotlib import pyplot as plt
 
-        
+
 class Launcher(QMainWindow):
     """
     A launcher application for executing Modelica models with specific
@@ -183,7 +183,6 @@ class Launcher(QMainWindow):
             return
         self.ui.status_label.setText("Launching Simulation...")
 
-        mat = self.ui.mat_check_but.isChecked()
         # Run the simulation executable as a subprocess.
         try:
             if not os.path.isfile(self.exe_path):
@@ -191,56 +190,19 @@ class Launcher(QMainWindow):
                     f"File not found: {self.exe_path}"
                 )
             # Correct the handling of the arguments for 'mat'.
-            if mat:
-                self.ui.status_label.setText("Running Subprocess...")
-                logging.info("Exporting results to output/result.mat")
-                result = subprocess.run(
-                    [
-                        self.exe_path,
-                        f"-override=startTime={self.start_time},stopTime={self.stop_time}",
-                        "-r=result.mat",
-                    ],
-                    cwd=self.working_directory,
-                    capture_output=True,
-                    text=True,
-                )
-                try:
-                    if not os.path.exists("output"):
-                        os.makedirs("output")
-                    
-                    target_dir = os.path.join("output", self.file_name)
-                    original_dir = target_dir
-                    counter = 1
+            self.ui.status_label.setText("Running Subprocess...")
+            logging.info("Exporting results to output/result.mat")
+            result = subprocess.run(
+                [
+                    self.exe_path,
+                    f"-override=startTime={self.start_time},stopTime={self.stop_time}",
+                    "-r=result.mat",
+                ],
+                cwd=self.working_directory,
+                capture_output=True,
+                text=True,
+            )
 
-                    # Add a numeric suffix until a unique name is found
-                    while os.path.exists(target_dir):
-                        target_dir = f"{original_dir}_{counter}"
-                        counter += 1
-
-                    os.mkdir(target_dir)
-                    os.rename(
-                        f"{self.working_directory}/result.mat", os.path.join(target_dir, "result.mat"))
-                except Exception as e:
-                    self.ui.status_label.setText(
-                        "Simulation failed. Check the log file...")
-                    logging.error("Status: Error creating output directory: %s", e)
-                    self.show_message_box(
-                        "Error",
-                        "Error creating output directory. Maybe the executable isn't correct",
-                        "critical"
-                    )
-
-            else:
-                self.ui.status_label.setText("Running Subprocess...")
-                result = subprocess.run(
-                    [
-                        self.exe_path,
-                        f"-override=startTime={self.start_time},stopTime={self.stop_time}"
-                    ],
-                    cwd=self.working_directory,
-                    capture_output=True,
-                    text=True,
-                )
 
         except FileNotFoundError as e:
             self.ui.status_label.setText(
@@ -271,9 +233,35 @@ class Launcher(QMainWindow):
                 logging.info("STDOUT:\n%s", result.stdout.strip())
                 self.show_message_box(
                     "Simulation Status",
-                    "Simulation successful. Plotting...",
+                    "Simulation successful. Check output directory...",
                     "info"
                 )
+                try:
+                    if not os.path.exists("output"):
+                        os.makedirs("output")
+
+                    target_dir = os.path.join("output", self.file_name)
+                    original_dir = target_dir
+                    counter = 1
+
+                    # Add a numeric suffix until a unique name is found
+                    while os.path.exists(target_dir):
+                        target_dir = f"{original_dir}_{counter}"
+                        counter += 1
+
+                    os.mkdir(target_dir)
+                    os.rename(
+                        f"{self.working_directory}/result.mat", os.path.join(target_dir, "result.mat"))
+                except Exception as e:
+                    self.ui.status_label.setText(
+                        "Simulation failed. Check the log file...")
+                    logging.error("Status: Error creating output directory: %s", e)
+                    self.show_message_box(
+                        "Error",
+                        "Error creating output directory. Maybe the executable isn't correct",
+                        "critical"
+                    )
+
             else:
                 self.ui.status_label.setText(
                     "Simulation failed. Check the log file...")
@@ -297,8 +285,9 @@ class Launcher(QMainWindow):
                 "Simulation Status", "An error occurred", "critical"
             )
 
+        plot = self.ui.plot_check_but.isChecked()
         try:
-            if mat :
+            if plot :
                 self.ui.status_label.setText("Showing the plots...")
                 run_simulation(os.path.join(target_dir, "result.mat"))
             
@@ -311,7 +300,6 @@ class Launcher(QMainWindow):
                 "critical"
             )
         self.ui.status_label.setText("Screening Task - OpenModelica GUI")
-
 
     def text_changed_stop(self):
         """
