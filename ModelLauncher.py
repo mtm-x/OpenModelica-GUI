@@ -4,7 +4,7 @@ import platform
 import subprocess
 import qdarktheme
 
-from PyQt6.QtGui import QIcon, QIntValidator
+from PyQt6.QtGui import QIcon, QIntValidator, QFontDatabase
 from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
 from PyQt6.QtCore import QThread, pyqtSignal
 
@@ -52,6 +52,7 @@ class Launcher(QMainWindow):
         self.setWindowIcon(QIcon("res/OML1.ico"))
         qdarktheme.setup_theme("light")
         self.ui.stackedWidget.setCurrentIndex(0)
+        QFontDatabase.addApplicationFont("res/fonts/Montserrat-VariableFont_wght.ttf")
 
         # Initialize variables
         self.working_directory = None
