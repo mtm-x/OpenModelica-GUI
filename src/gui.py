@@ -64,7 +64,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/res/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/home.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.home_but.setIcon(icon)
         self.home_but.setObjectName("home_but")
         self.verticalLayout.addWidget(self.home_but)
@@ -92,7 +92,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/res/customize-edit.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/customize-edit.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.theme_but.setIcon(icon1)
         self.theme_but.setObjectName("theme_but")
         self.verticalLayout.addWidget(self.theme_but)
@@ -120,7 +120,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icons/res/file-circle-info.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/file-circle-info.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.history_but.setIcon(icon2)
         self.history_but.setObjectName("history_but")
         self.verticalLayout.addWidget(self.history_but)
@@ -148,7 +148,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/res/document.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/document.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.doc_but.setIcon(icon3)
         self.doc_but.setObjectName("doc_but")
         self.verticalLayout.addWidget(self.doc_but)
@@ -179,7 +179,7 @@ class Ui_MainWindow(object):
 "\n"
 "")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icons/res/exit.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/exit.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.pushButton_5.setIcon(icon4)
         self.pushButton_5.setObjectName("pushButton_5")
         self.verticalLayout_2.addWidget(self.pushButton_5)
@@ -248,7 +248,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/res/folder-open.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon5.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/folder-open.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.folder_but.setIcon(icon5)
         self.folder_but.setIconSize(QtCore.QSize(22, 22))
         self.folder_but.setObjectName("folder_but")
@@ -287,7 +287,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icons/res/rocket-hand.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon6.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/rocket-hand.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.launch_but.setIcon(icon6)
         self.launch_but.setIconSize(QtCore.QSize(22, 22))
         self.launch_but.setObjectName("launch_but")
@@ -409,7 +409,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icons/res/time-fast.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon7.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/time-fast.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.set_but.setIcon(icon7)
         self.set_but.setObjectName("set_but")
         self.verticalLayout_5.addWidget(self.set_but)
@@ -440,7 +440,7 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icons/res/clear-alt.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon8.addPixmap(QtGui.QPixmap(":/icons/res/ui_icons/clear-alt.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.clear_time_but.setIcon(icon8)
         self.clear_time_but.setObjectName("clear_time_but")
         self.verticalLayout_5.addWidget(self.clear_time_but)
@@ -556,7 +556,7 @@ class Ui_MainWindow(object):
         self.label_10 = QtWidgets.QLabel(parent=self.page_4)
         self.label_10.setGeometry(QtCore.QRect(120, 10, 221, 211))
         self.label_10.setText("")
-        self.label_10.setPixmap(QtGui.QPixmap(":/icons/res/OML_NBG.png"))
+        self.label_10.setPixmap(QtGui.QPixmap(":/icons/res/pngs/OML_NBG.png"))
         self.label_10.setScaledContents(True)
         self.label_10.setWordWrap(True)
         self.label_10.setOpenExternalLinks(False)
@@ -581,7 +581,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         self.pushButton_5.clicked.connect(MainWindow.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

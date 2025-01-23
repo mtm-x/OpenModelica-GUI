@@ -49,10 +49,12 @@ class Launcher(QMainWindow):
 
         # Set window title and icon
         self.setWindowTitle("OpenModelica Model Launcher")
-        self.setWindowIcon(QIcon("res/OML1.ico"))
-        qdarktheme.setup_theme("light")
+        self.setWindowIcon(QIcon("res/pngs/OML1.ico"))
+        qdarktheme.setup_theme("auto")
         self.ui.stackedWidget.setCurrentIndex(0)
-        QFontDatabase.addApplicationFont("res/fonts/Montserrat-VariableFont_wght.ttf")
+        QFontDatabase.addApplicationFont("res/fonts/Montserrat-ExtraBold.ttf")
+        QFontDatabase.addApplicationFont("res/fonts/Montserrat-Regular.ttf")
+        QFontDatabase.addApplicationFont("res/fonts/Montserrat-SemiBold.ttf")
 
         # Initialize variables
         self.working_directory = None
