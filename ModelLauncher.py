@@ -186,7 +186,9 @@ class Launcher(QMainWindow):
                     capture_output=True,
                     text=True,
                 )
-
+                if not os.path.exists("output"):
+                    os.makedirs("output")
+                
                 target_dir = os.path.join("output", self.file_name)
                 original_dir = target_dir
                 counter = 1
