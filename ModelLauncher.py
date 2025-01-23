@@ -6,6 +6,7 @@ import qdarktheme
 
 from PyQt6.QtGui import QIcon, QIntValidator
 from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
+from PyQt6.QtCore import QThread, pyqtSignal
 
 from src.gui import Ui_MainWindow
 from src.logger import setup_logging
@@ -14,6 +15,20 @@ from src.result import run_simulation
 FILE_DIALOG_TITLE = "Please Select Model Executable"
 
 
+class Libloader(QThread):
+    """
+    A background thread to preload matplotlib and scipy.
+    """
+    loaded = pyqtSignal() 
+
+    def run(self):
+        """
+        Preload matplotlib and scipy to avoid delays.
+        """
+        from scipy.io import loadmat
+        from matplotlib import pyplot as plt
+
+        
 class Launcher(QMainWindow):
     """
     A launcher application for executing Modelica models with specific
@@ -28,6 +43,9 @@ class Launcher(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        self.matplotlib_loader = Libloader()
+        self.matplotlib_loader.start()  # Start the thread
 
         # Set window title and icon
         self.setWindowTitle("OpenModelica Model Launcher")
@@ -180,27 +198,37 @@ class Launcher(QMainWindow):
                     [
                         self.exe_path,
                         f"-override=startTime={self.start_time},stopTime={self.stop_time}",
-                        "-r=output/result.mat",
+                        "-r=result.mat",
                     ],
                     cwd=self.working_directory,
                     capture_output=True,
                     text=True,
                 )
-                if not os.path.exists("output"):
-                    os.makedirs("output")
-                
-                target_dir = os.path.join("output", self.file_name)
-                original_dir = target_dir
-                counter = 1
+                try:
+                    if not os.path.exists("output"):
+                        os.makedirs("output")
+                    
+                    target_dir = os.path.join("output", self.file_name)
+                    original_dir = target_dir
+                    counter = 1
 
-                # Add a numeric suffix until a unique name is found
-                while os.path.exists(target_dir):
-                    target_dir = f"{original_dir}_{counter}"
-                    counter += 1
+                    # Add a numeric suffix until a unique name is found
+                    while os.path.exists(target_dir):
+                        target_dir = f"{original_dir}_{counter}"
+                        counter += 1
 
-                os.mkdir(target_dir)
-                os.rename(
-                    f"{self.working_directory}/output/result.mat", os.path.join(target_dir, "result.mat"))
+                    os.mkdir(target_dir)
+                    os.rename(
+                        f"{self.working_directory}/result.mat", os.path.join(target_dir, "result.mat"))
+                except Exception as e:
+                    self.ui.status_label.setText(
+                        "Simulation failed. Check the log file...")
+                    logging.error("Status: Error creating output directory: %s", e)
+                    self.show_message_box(
+                        "Error",
+                        "Error creating output directory. Maybe the executable isn't correct",
+                        "critical"
+                    )
 
             else:
                 self.ui.status_label.setText("Running Subprocess...")
@@ -243,7 +271,7 @@ class Launcher(QMainWindow):
                 logging.info("STDOUT:\n%s", result.stdout.strip())
                 self.show_message_box(
                     "Simulation Status",
-                    "Simulation successful. Check the log file.",
+                    "Simulation successful. Plotting...",
                     "info"
                 )
             else:
@@ -268,10 +296,22 @@ class Launcher(QMainWindow):
             self.show_message_box(
                 "Simulation Status", "An error occurred", "critical"
             )
-        if mat :
-            self.ui.status_label.setText("Showing the plots...")
-            run_simulation(os.path.join(target_dir, "result.mat"))
+
+        try:
+            if mat :
+                self.ui.status_label.setText("Showing the plots...")
+                run_simulation(os.path.join(target_dir, "result.mat"))
+            
+        except Exception as e:
+            self.ui.status_label.setText("Cannot show the plots...")
+            logging.error("Status: Error showing plots: %s", e)
+            self.show_message_box(
+                "Error",
+                "Error showing plots. Please check the log file.",
+                "critical"
+            )
         self.ui.status_label.setText("Screening Task - OpenModelica GUI")
+
 
     def text_changed_stop(self):
         """

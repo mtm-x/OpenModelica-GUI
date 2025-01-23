@@ -1,11 +1,17 @@
-import scipy.io
-import matplotlib.pyplot as plt
 import logging
 
 def run_simulation(file_path):
+    """
+    Run the simulation using the data from the .mat file and plot the results.
+    It expects the .mat file to contain two variables: data_1 and data_2.
+    2D arrays are expected for both variables.
+    This script is made to the result generated from TwoConnectedTanks Model
+    """
+    from scipy.io import loadmat
+    from matplotlib import pyplot as plt
     # Load the .mat file
     try:
-        data = scipy.io.loadmat(file_path)
+        data = loadmat(file_path)
     except Exception as e:
         logging.error("Error reading the .mat file: %s", e)
         return
@@ -47,7 +53,3 @@ def run_simulation(file_path):
     # Adjust layout and display the plots
     plt.tight_layout()
     plt.show()
-
-
-
-
