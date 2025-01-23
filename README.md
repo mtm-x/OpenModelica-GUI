@@ -143,9 +143,26 @@ The application uses a centralized logging system to provide detailed analysis a
 ---
 
 ## 📷 Screenshot
+1. Home screen
+   
+![Screenshot 2025-01-23 221824](https://github.com/user-attachments/assets/2d4fbbaa-12f1-4849-b9d7-09d38e61bd00)
 
+2. Themes
+ 
+![Screenshot 2025-01-23 221847](https://github.com/user-attachments/assets/1fbaf38f-094f-4676-b7bc-1740814b85a6)
 
-![Screenshot 2025-01-17 135610](https://github.com/user-attachments/assets/4fd28547-0a5c-44b2-8f51-cd37fed7be02)
+3. Log History
+
+![Screenshot 2025-01-23 221901](https://github.com/user-attachments/assets/71e153a4-5371-4677-bbba-4534881685d8)
+
+4. Docs
+
+![Screenshot 2025-01-23 222606](https://github.com/user-attachments/assets/1084ce31-2c2c-4b79-9c87-e51d7a76464e)
+
+5. Plot
+
+![Screenshot 2025-01-23 224410](https://github.com/user-attachments/assets/a2c886a2-0ad7-4937-9dec-ae17dcf85c37)
+
 
 ---
 ## 🎥 Demo
@@ -153,7 +170,7 @@ The application uses a centralized logging system to provide detailed analysis a
 
 
 
-https://github.com/user-attachments/assets/863a8a87-e399-463b-b2a0-65427910b429
+https://github.com/user-attachments/assets/937f8298-f274-42ce-b769-a867979abcb3
 
 
 
