@@ -269,6 +269,7 @@ class Launcher(QMainWindow):
                 "Simulation Status", "An error occurred", "critical"
             )
         if mat :
+            self.ui.status_label.setText("Showing the plots...")
             run_simulation(os.path.join(target_dir, "result.mat"))
         self.ui.status_label.setText("Screening Task - OpenModelica GUI")
 

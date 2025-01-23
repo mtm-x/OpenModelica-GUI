@@ -15,9 +15,6 @@ def run_simulation(file_path):
         logging.warning("The .mat file is empty or could not be loaded!")
         return
 
-    # Log the keys in the .mat file
-    logging.info("Keys in .mat file: %s", data.keys())
-
     # Create subplots
     fig, axes = plt.subplots(1, 2, figsize=(12, 6))  # 1 row, 2 columns of plots
 
