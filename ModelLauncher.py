@@ -3,7 +3,6 @@ import os
 import platform
 import subprocess
 import qdarktheme
-from webbrowser import open as open_browser
 
 from PyQt6.QtGui import QIcon, QIntValidator
 from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
@@ -49,11 +48,10 @@ class Launcher(QMainWindow):
         self.ui.folder_but.clicked.connect(self.on_folder_button)
         self.ui.launch_but.clicked.connect(self.on_launch_button)
         self.ui.doc_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(3))
-        self.ui.info_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(2))
+        self.ui.history_but.clicked.connect(self.on_history_button)
         self.ui.start_line.textChanged.connect(self.text_changed_start)
         self.ui.home_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
         self.ui.theme_but.clicked.connect(self.theme)
-        self.ui.git_but.clicked.connect(lambda: open_browser("https://github.com/mtm-x/OpenModelica-GUI"))
         self.ui.theme_set_but.clicked.connect(self.theme_set)
         self.ui.stop_line.textChanged.connect(self.text_changed_stop)
         self.ui.clear_but.clicked.connect(self.clear)
@@ -163,8 +161,8 @@ class Launcher(QMainWindow):
                 )
             # Correct the handling of the arguments for 'mat'.
             if mat:
-                logging.info("Exporting results to output/result.mat")
                 self.ui.status_label.setText("Running Subprocess...")
+                logging.info("Exporting results to output/result.mat")
                 result = subprocess.run(
                     [
                         self.exe_path,
@@ -190,7 +188,7 @@ class Launcher(QMainWindow):
 
         except FileNotFoundError as e:
             self.ui.status_label.setText("Simulation failed. Check the log file...")
-            logging.error("File not found: %s", e.filename)
+            logging.error("Status: File not found: %s", e.filename)
             self.show_message_box(
                 "Error",
                 f"File not found: {e.filename}",
@@ -198,7 +196,7 @@ class Launcher(QMainWindow):
             )
         except subprocess.CalledProcessError as e:
             self.ui.status_label.setText("Simulation failed. Check the log file...")
-            logging.error("Subprocess failed: %s", e.stderr)
+            logging.error("Status: Subprocess failed: %s", e.stderr)
             self.show_message_box(
                 "Error",
                 "Simulation failed to run.",
@@ -210,6 +208,7 @@ class Launcher(QMainWindow):
         if result.stdout:
             if "LOG_SUCCESS" in result.stdout:
                 self.ui.status_label.setText("Simulation successful. Check the log file...")
+                logging.info("Status: Simulation successful.")
                 logging.info("STDOUT:\n%s", result.stdout.strip())
                 self.show_message_box(
                     "Simulation Status",
@@ -218,6 +217,7 @@ class Launcher(QMainWindow):
                 )
             else:
                 self.ui.status_label.setText("Simulation failed. Check the log file...")
+                logging.error("Status: Simulation failed.")
                 logging.error("STDOUT:\n%s", result.stdout.strip())
                 logging.error(
                     "STDERR:\nModel may not have necessary dependent files "
@@ -230,6 +230,7 @@ class Launcher(QMainWindow):
                 )
         else:
             self.ui.status_label.setText("Simulation failed. Check the log file...")
+            logging.error("Status: Simulation failed.")
             logging.exception("An error occurred during simulation.")
             self.show_message_box(
                 "Simulation Status", "An error occurred", "critical"
@@ -254,18 +255,29 @@ class Launcher(QMainWindow):
         if not self.ui.start_line.text():
             self.start_time = None
 
-    def on_doc_button(self):
-        """
-        Open the GitHub repository URL in the default web browser for help
-        and additional information.
-        """
-        self.ui.stackedWidget.setCurrentIndex(3)
-
-    def on_info_button(self):
-        """
-        Show an informational message about the application and its purpose.
-        """
+    def on_history_button(self):
         self.ui.stackedWidget.setCurrentIndex(2)
+        if os.path.exists("logs/OPLauncher.log"):
+            self.ui.listWidget.clear()
+
+            with open("logs/OPLauncher.log", 'r') as f:
+                for line in f:
+                    i = line
+                    if "Selected Model:" in line:
+                        line = line.split("Selected Model:")[1]
+                        self.ui.listWidget.addItem("Executable: " + line)
+
+                    if "Model Path:" in line:
+                        model = line.split("Model Path:")
+                        self.ui.listWidget.addItems(model)
+
+                    if "Status:" in line:
+                        status = line.split("Status:")[1]
+                        self.ui.listWidget.addItem("Status: " + status)
+                        self.ui.listWidget.addItem("-------------------------------------------------------------------------------------------------------------------------------------")
+       
+        else:
+            self.ui.listWidget.addItem("No Logs Found")
 
     def clear(self):
         """

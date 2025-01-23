@@ -96,16 +96,16 @@ class Ui_MainWindow(object):
         self.theme_but.setIcon(icon1)
         self.theme_but.setObjectName("theme_but")
         self.verticalLayout.addWidget(self.theme_but)
-        self.info_but = QtWidgets.QPushButton(parent=self.menu_widget)
+        self.history_but = QtWidgets.QPushButton(parent=self.menu_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.info_but.sizePolicy().hasHeightForWidth())
-        self.info_but.setSizePolicy(sizePolicy)
-        self.info_but.setMinimumSize(QtCore.QSize(109, 48))
-        self.info_but.setMaximumSize(QtCore.QSize(109, 48))
-        self.info_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.info_but.setStyleSheet("QPushButton {\n"
+        sizePolicy.setHeightForWidth(self.history_but.sizePolicy().hasHeightForWidth())
+        self.history_but.setSizePolicy(sizePolicy)
+        self.history_but.setMinimumSize(QtCore.QSize(109, 48))
+        self.history_but.setMaximumSize(QtCore.QSize(109, 48))
+        self.history_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.history_but.setStyleSheet("QPushButton {\n"
 "    font: 600 9pt \"Montserrat\";\n"
 "    background-color: #EAEAEA; \n"
 "    color: #333333;  \n"
@@ -121,9 +121,9 @@ class Ui_MainWindow(object):
 "")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/icons/res/file-circle-info.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.info_but.setIcon(icon2)
-        self.info_but.setObjectName("info_but")
-        self.verticalLayout.addWidget(self.info_but)
+        self.history_but.setIcon(icon2)
+        self.history_but.setObjectName("history_but")
+        self.verticalLayout.addWidget(self.history_but)
         self.doc_but = QtWidgets.QPushButton(parent=self.menu_widget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
@@ -499,6 +499,7 @@ class Ui_MainWindow(object):
         self.label.setObjectName("label")
         self.comboBox = QtWidgets.QComboBox(parent=self.page_2)
         self.comboBox.setGeometry(QtCore.QRect(140, 90, 171, 41))
+        self.comboBox.setStyleSheet("font:  9pt \"Montserrat\";")
         self.comboBox.setObjectName("comboBox")
         self.theme_set_but = QtWidgets.QPushButton(parent=self.page_2)
         self.theme_set_but.setGeometry(QtCore.QRect(170, 150, 121, 41))
@@ -529,34 +530,15 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_2)
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
-        self.label_3 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_3.setGeometry(QtCore.QRect(30, 60, 341, 61))
-        self.label_3.setStyleSheet("font: 800 14pt \"Montserrat\";")
-        self.label_3.setObjectName("label_3")
         self.label_7 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_7.setGeometry(QtCore.QRect(30, 30, 49, 16))
+        self.label_7.setGeometry(QtCore.QRect(20, 30, 81, 21))
         self.label_7.setStyleSheet("font: 800 14pt \"Montserrat\";\n"
 "")
         self.label_7.setObjectName("label_7")
-        self.label_8 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_8.setGeometry(QtCore.QRect(30, 240, 341, 61))
-        self.label_8.setStyleSheet("font: 800 14pt \"Montserrat\";\n"
-"\n"
-"")
-        self.label_8.setObjectName("label_8")
-        self.label_2 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_2.setGeometry(QtCore.QRect(30, 110, 461, 111))
-        self.label_2.setStyleSheet("font: 10pt \"Montserrat\";")
-        self.label_2.setObjectName("label_2")
-        self.label_9 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_9.setGeometry(QtCore.QRect(30, 300, 151, 16))
-        self.label_9.setStyleSheet("font: 10pt \"Montserrat\";")
-        self.label_9.setObjectName("label_9")
-        self.label_12 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_12.setGeometry(QtCore.QRect(180, 300, 61, 16))
-        self.label_12.setStyleSheet("font: 10pt \"Montserrat\";")
-        self.label_12.setOpenExternalLinks(True)
-        self.label_12.setObjectName("label_12")
+        self.listWidget = QtWidgets.QListWidget(parent=self.page_3)
+        self.listWidget.setGeometry(QtCore.QRect(20, 60, 461, 311))
+        self.listWidget.setStyleSheet("font:  9pt \"Montserrat\";")
+        self.listWidget.setObjectName("listWidget")
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
@@ -564,35 +546,11 @@ class Ui_MainWindow(object):
         self.label_4.setGeometry(QtCore.QRect(20, 20, 181, 51))
         self.label_4.setStyleSheet("font: 800 14pt \"Montserrat\";")
         self.label_4.setObjectName("label_4")
-        self.git_but = QtWidgets.QPushButton(parent=self.page_4)
-        self.git_but.setGeometry(QtCore.QRect(180, 300, 111, 41))
-        self.git_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.git_but.setStyleSheet("QPushButton {\n"
-"    background-color: #0078D4;\n"
-"    color: white; \n"
-"    border: none;  \n"
-"    border-radius: 6px;    \n"
-"    font-size: 14px;  \n"
-"    font: 600 9pt \"Montserrat\";\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #005A9E; \n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #003E73; \n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A9A9A9;\n"
-"    color: white;   \n"
-"}\n"
-"")
-        self.git_but.setObjectName("git_but")
         self.label_11 = QtWidgets.QLabel(parent=self.page_4)
         self.label_11.setGeometry(QtCore.QRect(20, 220, 481, 51))
         self.label_11.setStyleSheet("font: 10pt \"Montserrat\";")
+        self.label_11.setOpenExternalLinks(True)
+        self.label_11.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextBrowserInteraction)
         self.label_11.setObjectName("label_11")
         self.label_10 = QtWidgets.QLabel(parent=self.page_4)
         self.label_10.setGeometry(QtCore.QRect(120, 10, 221, 211))
@@ -602,12 +560,27 @@ class Ui_MainWindow(object):
         self.label_10.setWordWrap(True)
         self.label_10.setOpenExternalLinks(False)
         self.label_10.setObjectName("label_10")
+        self.label_13 = QtWidgets.QLabel(parent=self.page_4)
+        self.label_13.setGeometry(QtCore.QRect(20, 290, 341, 61))
+        self.label_13.setStyleSheet("font: 800 14pt \"Montserrat\";\n"
+"\n"
+"")
+        self.label_13.setObjectName("label_13")
+        self.label_14 = QtWidgets.QLabel(parent=self.page_4)
+        self.label_14.setGeometry(QtCore.QRect(20, 350, 151, 16))
+        self.label_14.setStyleSheet("font: 10pt \"Montserrat\";")
+        self.label_14.setObjectName("label_14")
+        self.label_15 = QtWidgets.QLabel(parent=self.page_4)
+        self.label_15.setGeometry(QtCore.QRect(170, 350, 61, 16))
+        self.label_15.setStyleSheet("font: 10pt \"Montserrat\";")
+        self.label_15.setOpenExternalLinks(True)
+        self.label_15.setObjectName("label_15")
         self.stackedWidget.addWidget(self.page_4)
         self.gridLayout_3.addWidget(self.stackedWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget.setCurrentIndex(1)
         self.pushButton_5.clicked.connect(MainWindow.close) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -616,7 +589,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.home_but.setText(_translate("MainWindow", "Home"))
         self.theme_but.setText(_translate("MainWindow", "Themes"))
-        self.info_but.setText(_translate("MainWindow", "Info"))
+        self.history_but.setText(_translate("MainWindow", "History"))
         self.doc_but.setText(_translate("MainWindow", "Docs"))
         self.pushButton_5.setText(_translate("MainWindow", "Exit"))
         self.folder_but.setText(_translate("MainWindow", "  Choose Model"))
@@ -645,15 +618,9 @@ class Ui_MainWindow(object):
         self.status_label.setText(_translate("MainWindow", "Screening Task - OpenModelica GUI "))
         self.label.setText(_translate("MainWindow", "Themes"))
         self.theme_set_but.setText(_translate("MainWindow", "Set Theme"))
-        self.label_3.setText(_translate("MainWindow", "OpenModelica Model Launcher"))
-        self.label_7.setText(_translate("MainWindow", "Info"))
-        self.label_8.setText(_translate("MainWindow", "Developed By"))
-        self.label_2.setText(_translate("MainWindow", "This is a simple Modelica model launcher. It allows you to\n"
-"select a Modelica model and specify the start \n"
-"and stop times for the simulation. The simulation will run \n"
-"in the background, and you will be notified when it is done."))
-        self.label_9.setText(_translate("MainWindow", "Thamaraimanalan M "))
-        self.label_12.setText(_translate("MainWindow", "<html><head/><body><p><a href=\"https://github.com/mtm-x\"><span style=\" text-decoration: underline; color:#005393;\">GitHub</span></a></p></body></html>"))
+        self.label_7.setText(_translate("MainWindow", "History"))
         self.label_4.setText(_translate("MainWindow", "Documentation"))
-        self.git_but.setText(_translate("MainWindow", "GitHub"))
-        self.label_11.setText(_translate("MainWindow", "<html><head/><body><p>For more information and usage instructions, please refer </p><p>to the official repository.</p></body></html>"))
+        self.label_11.setText(_translate("MainWindow", "<html><head/><body><p>For more information and usage instructions, please refer </p><p>to the official repository. <a href=\"https://github.com/mtm-x/OpenModelica-GUI\"><span style=\" text-decoration: underline; color:#005393;\">Click here</span></a></p></body></html>"))
+        self.label_13.setText(_translate("MainWindow", "Developed By"))
+        self.label_14.setText(_translate("MainWindow", "Thamaraimanalan M "))
+        self.label_15.setText(_translate("MainWindow", "<html><head/><body><p><a href=\"https://github.com/mtm-x\"><span style=\" text-decoration: underline; color:#005393;\">GitHub</span></a></p></body></html>"))
