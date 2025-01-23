@@ -12,14 +12,14 @@ import src.res_rc
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(631, 370)
+        MainWindow.resize(631, 400)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
-        MainWindow.setMinimumSize(QtCore.QSize(631, 370))
-        MainWindow.setMaximumSize(QtCore.QSize(631, 370))
+        MainWindow.setMinimumSize(QtCore.QSize(631, 400))
+        MainWindow.setMaximumSize(QtCore.QSize(631, 400))
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.menu_widget = QtWidgets.QWidget(parent=self.centralwidget)
@@ -208,6 +208,93 @@ class Ui_MainWindow(object):
         self.gridLayout_2 = QtWidgets.QGridLayout(self.widget_8)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2.setObjectName("gridLayout_2")
+        self.widget_2 = QtWidgets.QWidget(parent=self.widget_8)
+        self.widget_2.setMinimumSize(QtCore.QSize(480, 59))
+        self.widget_2.setMaximumSize(QtCore.QSize(480, 59))
+        self.widget_2.setObjectName("widget_2")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem3)
+        self.folder_but = QtWidgets.QPushButton(parent=self.widget_2)
+        self.folder_but.setMinimumSize(QtCore.QSize(161, 41))
+        self.folder_but.setMaximumSize(QtCore.QSize(161, 41))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(9)
+        font.setItalic(False)
+        self.folder_but.setFont(font)
+        self.folder_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.folder_but.setStyleSheet("QPushButton {\n"
+"    background-color: #0078D4;\n"
+"    color: white; \n"
+"    border: none;  \n"
+"    border-radius: 6px;    \n"
+"    font-size: 14px;  \n"
+"    font: 600 9pt \"Montserrat\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #005A9E; \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #003E73; \n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #A9A9A9;\n"
+"    color: white;   \n"
+"}\n"
+"")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/icons/res/folder-open.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.folder_but.setIcon(icon5)
+        self.folder_but.setIconSize(QtCore.QSize(22, 22))
+        self.folder_but.setObjectName("folder_but")
+        self.horizontalLayout_3.addWidget(self.folder_but)
+        spacerItem4 = QtWidgets.QSpacerItem(100, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem4)
+        self.launch_but = QtWidgets.QPushButton(parent=self.widget_2)
+        self.launch_but.setMinimumSize(QtCore.QSize(161, 0))
+        self.launch_but.setMaximumSize(QtCore.QSize(161, 41))
+        font = QtGui.QFont()
+        font.setFamily("Montserrat")
+        font.setPointSize(9)
+        font.setItalic(False)
+        self.launch_but.setFont(font)
+        self.launch_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.launch_but.setStyleSheet("QPushButton {\n"
+"    background-color: #28A745; \n"
+"    color: white;         \n"
+"    border: none;            \n"
+"    border-radius: 6px; \n"
+"    font-size: 14px;   \n"
+"    font: 600 9pt \"Montserrat\";\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: #218838; \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: #1E7E34; \n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    background-color: #A9A9A9; \n"
+"    color: white;         \n"
+"}\n"
+"")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/icons/res/rocket-hand.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.launch_but.setIcon(icon6)
+        self.launch_but.setIconSize(QtCore.QSize(22, 22))
+        self.launch_but.setObjectName("launch_but")
+        self.horizontalLayout_3.addWidget(self.launch_but)
+        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout_3.addItem(spacerItem5)
+        self.gridLayout_2.addWidget(self.widget_2, 1, 0, 1, 1)
         self.widget_7 = QtWidgets.QWidget(parent=self.widget_8)
         self.widget_7.setObjectName("widget_7")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_7)
@@ -277,8 +364,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_6.addWidget(self.stop_line)
         self.verticalLayout_7.addWidget(self.groupBox)
         self.horizontalLayout.addWidget(self.widget_5)
-        spacerItem3 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout.addItem(spacerItem3)
+        spacerItem6 = QtWidgets.QSpacerItem(80, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout.addItem(spacerItem6)
         self.widget_6 = QtWidgets.QWidget(parent=self.widget_7)
         self.widget_6.setObjectName("widget_6")
         self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.widget_6)
@@ -320,9 +407,9 @@ class Ui_MainWindow(object):
 "    color: #A9A9A9; \n"
 "}\n"
 "")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/res/time-fast.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.set_but.setIcon(icon5)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/icons/res/time-fast.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.set_but.setIcon(icon7)
         self.set_but.setObjectName("set_but")
         self.verticalLayout_5.addWidget(self.set_but)
         self.clear_time_but = QtWidgets.QPushButton(parent=self.widget_6)
@@ -351,14 +438,14 @@ class Ui_MainWindow(object):
 "    color: #A9A9A9; \n"
 "}\n"
 "")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icons/res/clear-alt.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.clear_time_but.setIcon(icon6)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/icons/res/clear-alt.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        self.clear_time_but.setIcon(icon8)
         self.clear_time_but.setObjectName("clear_time_but")
         self.verticalLayout_5.addWidget(self.clear_time_but)
         self.horizontalLayout.addWidget(self.widget_6)
-        spacerItem4 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout.addItem(spacerItem4)
+        spacerItem7 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.horizontalLayout.addItem(spacerItem7)
         self.gridLayout_2.addWidget(self.widget_7, 2, 0, 1, 1)
         self.widget = QtWidgets.QWidget(parent=self.widget_8)
         self.widget.setMinimumSize(QtCore.QSize(471, 51))
@@ -395,97 +482,14 @@ class Ui_MainWindow(object):
 "}\n"
 "")
         self.clear_but.setText("")
-        self.clear_but.setIcon(icon6)
+        self.clear_but.setIcon(icon8)
         self.clear_but.setObjectName("clear_but")
         self.horizontalLayout_2.addWidget(self.clear_but)
         self.gridLayout_2.addWidget(self.widget, 0, 0, 1, 1)
-        self.widget_2 = QtWidgets.QWidget(parent=self.widget_8)
-        self.widget_2.setMinimumSize(QtCore.QSize(480, 59))
-        self.widget_2.setMaximumSize(QtCore.QSize(480, 59))
-        self.widget_2.setObjectName("widget_2")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_2)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        spacerItem5 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem5)
-        self.folder_but = QtWidgets.QPushButton(parent=self.widget_2)
-        self.folder_but.setMinimumSize(QtCore.QSize(161, 41))
-        self.folder_but.setMaximumSize(QtCore.QSize(161, 41))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat")
-        font.setPointSize(9)
-        font.setItalic(False)
-        self.folder_but.setFont(font)
-        self.folder_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.folder_but.setStyleSheet("QPushButton {\n"
-"    background-color: #0078D4;\n"
-"    color: white; \n"
-"    border: none;  \n"
-"    border-radius: 6px;    \n"
-"    font-size: 14px;  \n"
-"    font: 600 9pt \"Montserrat\";\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #005A9E; \n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #003E73; \n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A9A9A9;\n"
-"    color: white;   \n"
-"}\n"
-"")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icons/res/folder-open.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.folder_but.setIcon(icon7)
-        self.folder_but.setIconSize(QtCore.QSize(22, 22))
-        self.folder_but.setObjectName("folder_but")
-        self.horizontalLayout_3.addWidget(self.folder_but)
-        spacerItem6 = QtWidgets.QSpacerItem(100, 40, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem6)
-        self.launch_but = QtWidgets.QPushButton(parent=self.widget_2)
-        self.launch_but.setMinimumSize(QtCore.QSize(161, 0))
-        self.launch_but.setMaximumSize(QtCore.QSize(161, 41))
-        font = QtGui.QFont()
-        font.setFamily("Montserrat")
-        font.setPointSize(9)
-        font.setItalic(False)
-        self.launch_but.setFont(font)
-        self.launch_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.launch_but.setStyleSheet("QPushButton {\n"
-"    background-color: #28A745; \n"
-"    color: white;         \n"
-"    border: none;            \n"
-"    border-radius: 6px; \n"
-"    font-size: 14px;   \n"
-"    font: 600 9pt \"Montserrat\";\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #218838; \n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #1E7E34; \n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A9A9A9; \n"
-"    color: white;         \n"
-"}\n"
-"")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icons/res/rocket-hand.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        self.launch_but.setIcon(icon8)
-        self.launch_but.setIconSize(QtCore.QSize(22, 22))
-        self.launch_but.setObjectName("launch_but")
-        self.horizontalLayout_3.addWidget(self.launch_but)
-        spacerItem7 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem7)
-        self.gridLayout_2.addWidget(self.widget_2, 1, 0, 1, 1)
+        self.status_label = QtWidgets.QLabel(parent=self.page)
+        self.status_label.setGeometry(QtCore.QRect(100, 360, 251, 16))
+        self.status_label.setStyleSheet("font:  9pt \"Montserrat\";")
+        self.status_label.setObjectName("status_label")
         self.stackedWidget.addWidget(self.page)
         self.page_2 = QtWidgets.QWidget()
         self.page_2.setObjectName("page_2")
@@ -526,10 +530,8 @@ class Ui_MainWindow(object):
         self.page_3 = QtWidgets.QWidget()
         self.page_3.setObjectName("page_3")
         self.label_3 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_3.setGeometry(QtCore.QRect(30, 40, 341, 61))
-        self.label_3.setStyleSheet("font: 800 14pt \"Montserrat\";\n"
-"color: rgb(44, 62, 80);\n"
-"")
+        self.label_3.setGeometry(QtCore.QRect(30, 60, 341, 61))
+        self.label_3.setStyleSheet("font: 800 14pt \"Montserrat\";")
         self.label_3.setObjectName("label_3")
         self.label_7 = QtWidgets.QLabel(parent=self.page_3)
         self.label_7.setGeometry(QtCore.QRect(30, 30, 49, 16))
@@ -539,33 +541,31 @@ class Ui_MainWindow(object):
         self.label_8 = QtWidgets.QLabel(parent=self.page_3)
         self.label_8.setGeometry(QtCore.QRect(30, 240, 341, 61))
         self.label_8.setStyleSheet("font: 800 14pt \"Montserrat\";\n"
-"color: rgb(44, 62, 80);\n"
+"\n"
 "")
         self.label_8.setObjectName("label_8")
         self.label_2 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_2.setGeometry(QtCore.QRect(30, 90, 461, 111))
+        self.label_2.setGeometry(QtCore.QRect(30, 110, 461, 111))
         self.label_2.setStyleSheet("font: 10pt \"Montserrat\";")
         self.label_2.setObjectName("label_2")
         self.label_9 = QtWidgets.QLabel(parent=self.page_3)
         self.label_9.setGeometry(QtCore.QRect(30, 300, 151, 16))
         self.label_9.setStyleSheet("font: 10pt \"Montserrat\";")
         self.label_9.setObjectName("label_9")
-        self.label_10 = QtWidgets.QLabel(parent=self.page_3)
-        self.label_10.setGeometry(QtCore.QRect(190, 300, 49, 16))
-        self.label_10.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.label_10.setMouseTracking(False)
-        self.label_10.setStyleSheet("font: 10pt \"Montserrat\";")
-        self.label_10.setTextInteractionFlags(QtCore.Qt.TextInteractionFlag.TextBrowserInteraction)
-        self.label_10.setObjectName("label_10")
+        self.label_12 = QtWidgets.QLabel(parent=self.page_3)
+        self.label_12.setGeometry(QtCore.QRect(180, 300, 61, 16))
+        self.label_12.setStyleSheet("font: 10pt \"Montserrat\";")
+        self.label_12.setOpenExternalLinks(True)
+        self.label_12.setObjectName("label_12")
         self.stackedWidget.addWidget(self.page_3)
         self.page_4 = QtWidgets.QWidget()
         self.page_4.setObjectName("page_4")
         self.label_4 = QtWidgets.QLabel(parent=self.page_4)
-        self.label_4.setGeometry(QtCore.QRect(20, 10, 181, 51))
+        self.label_4.setGeometry(QtCore.QRect(20, 20, 181, 51))
         self.label_4.setStyleSheet("font: 800 14pt \"Montserrat\";")
         self.label_4.setObjectName("label_4")
         self.git_but = QtWidgets.QPushButton(parent=self.page_4)
-        self.git_but.setGeometry(QtCore.QRect(170, 150, 111, 41))
+        self.git_but.setGeometry(QtCore.QRect(180, 300, 111, 41))
         self.git_but.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.git_but.setStyleSheet("QPushButton {\n"
 "    background-color: #0078D4;\n"
@@ -591,9 +591,17 @@ class Ui_MainWindow(object):
 "")
         self.git_but.setObjectName("git_but")
         self.label_11 = QtWidgets.QLabel(parent=self.page_4)
-        self.label_11.setGeometry(QtCore.QRect(20, 70, 481, 51))
+        self.label_11.setGeometry(QtCore.QRect(20, 220, 481, 51))
         self.label_11.setStyleSheet("font: 10pt \"Montserrat\";")
         self.label_11.setObjectName("label_11")
+        self.label_10 = QtWidgets.QLabel(parent=self.page_4)
+        self.label_10.setGeometry(QtCore.QRect(120, 10, 221, 211))
+        self.label_10.setText("")
+        self.label_10.setPixmap(QtGui.QPixmap(":/icons/res/OML_NBG.png"))
+        self.label_10.setScaledContents(True)
+        self.label_10.setWordWrap(True)
+        self.label_10.setOpenExternalLinks(False)
+        self.label_10.setObjectName("label_10")
         self.stackedWidget.addWidget(self.page_4)
         self.gridLayout_3.addWidget(self.stackedWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -611,6 +619,8 @@ class Ui_MainWindow(object):
         self.info_but.setText(_translate("MainWindow", "Info"))
         self.doc_but.setText(_translate("MainWindow", "Docs"))
         self.pushButton_5.setText(_translate("MainWindow", "Exit"))
+        self.folder_but.setText(_translate("MainWindow", "  Choose Model"))
+        self.launch_but.setText(_translate("MainWindow", "  Launch Model"))
         self.groupBox.setTitle(_translate("MainWindow", "Simulation Settings"))
         self.label_5.setText(_translate("MainWindow", "Start time:"))
         self.start_line.setToolTip(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
@@ -632,8 +642,7 @@ class Ui_MainWindow(object):
         self.clear_time_but.setText(_translate("MainWindow", "  Clear Time"))
         self.main_label.setText(_translate("MainWindow", "Model : no model selected"))
         self.clear_but.setToolTip(_translate("MainWindow", "<html><head/><body><p>clear</p></body></html>"))
-        self.folder_but.setText(_translate("MainWindow", "  Choose Model"))
-        self.launch_but.setText(_translate("MainWindow", "  Launch Model"))
+        self.status_label.setText(_translate("MainWindow", "Screening Task - OpenModelica GUI "))
         self.label.setText(_translate("MainWindow", "Themes"))
         self.theme_set_but.setText(_translate("MainWindow", "Set Theme"))
         self.label_3.setText(_translate("MainWindow", "OpenModelica Model Launcher"))
@@ -644,7 +653,7 @@ class Ui_MainWindow(object):
 "and stop times for the simulation. The simulation will run \n"
 "in the background, and you will be notified when it is done."))
         self.label_9.setText(_translate("MainWindow", "Thamaraimanalan M "))
-        self.label_10.setText(_translate("MainWindow", "<html><head/><body><p><a href=\"https://github.com/mtm-x\"><span style=\" text-decoration: underline; color:#005393;\">Github</span></a></p></body></html>"))
+        self.label_12.setText(_translate("MainWindow", "<html><head/><body><p><a href=\"https://github.com/mtm-x\"><span style=\" text-decoration: underline; color:#005393;\">GitHub</span></a></p></body></html>"))
         self.label_4.setText(_translate("MainWindow", "Documentation"))
         self.git_but.setText(_translate("MainWindow", "GitHub"))
         self.label_11.setText(_translate("MainWindow", "<html><head/><body><p>For more information and usage instructions, please refer </p><p>to the official repository.</p></body></html>"))

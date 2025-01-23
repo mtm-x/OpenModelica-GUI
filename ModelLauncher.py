@@ -42,6 +42,7 @@ class Launcher(QMainWindow):
         self.start_time = None
         self.stop_time = None
         self.file_name = None
+        self.change_theme = None
 
         # Connect UI buttons and fields to their respective event handlers
         self.ui.set_but.clicked.connect(self.on_set_button)
@@ -151,6 +152,8 @@ class Launcher(QMainWindow):
                 "Error", FILE_DIALOG_TITLE, "warning"
             )
             return
+        self.ui.status_label.setText("Launching Simulation...")
+
         mat = self.ui.mat_check_but.isChecked()
         # Run the simulation executable as a subprocess.
         try:
@@ -161,6 +164,7 @@ class Launcher(QMainWindow):
             # Correct the handling of the arguments for 'mat'.
             if mat:
                 logging.info("Exporting results to output/result.mat")
+                self.ui.status_label.setText("Running Subprocess...")
                 result = subprocess.run(
                     [
                         self.exe_path,
@@ -173,7 +177,7 @@ class Launcher(QMainWindow):
                 )
 
             else:
-
+                self.ui.status_label.setText("Running Subprocess...")
                 result = subprocess.run(
                     [
                         self.exe_path,
@@ -185,6 +189,7 @@ class Launcher(QMainWindow):
                 )
 
         except FileNotFoundError as e:
+            self.ui.status_label.setText("Simulation failed. Check the log file...")
             logging.error("File not found: %s", e.filename)
             self.show_message_box(
                 "Error",
@@ -192,6 +197,7 @@ class Launcher(QMainWindow):
                 "critical"
             )
         except subprocess.CalledProcessError as e:
+            self.ui.status_label.setText("Simulation failed. Check the log file...")
             logging.error("Subprocess failed: %s", e.stderr)
             self.show_message_box(
                 "Error",
@@ -203,6 +209,7 @@ class Launcher(QMainWindow):
         # Handle simulation results and show appropriate message.
         if result.stdout:
             if "LOG_SUCCESS" in result.stdout:
+                self.ui.status_label.setText("Simulation successful. Check the log file...")
                 logging.info("STDOUT:\n%s", result.stdout.strip())
                 self.show_message_box(
                     "Simulation Status",
@@ -210,6 +217,7 @@ class Launcher(QMainWindow):
                     "info"
                 )
             else:
+                self.ui.status_label.setText("Simulation failed. Check the log file...")
                 logging.error("STDOUT:\n%s", result.stdout.strip())
                 logging.error(
                     "STDERR:\nModel may not have necessary dependent files "
@@ -221,12 +229,15 @@ class Launcher(QMainWindow):
                     "critical"
                 )
         else:
+            self.ui.status_label.setText("Simulation failed. Check the log file...")
             logging.exception("An error occurred during simulation.")
             self.show_message_box(
                 "Simulation Status", "An error occurred", "critical"
             )
         #if mat :
             #run_simulation("Model/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks_Win/output/result.mat")
+        self.ui.status_label.setText("Screening Task - OpenModelica GUI")
+
     def text_changed_stop(self):
         """
         Handle the event when the stop time text field value is changed.
