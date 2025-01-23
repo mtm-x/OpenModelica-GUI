@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
 
 from src.gui import Ui_MainWindow
 from src.logger import setup_logging
-#from src.result import run_simulation
+from src.result import run_simulation
 
 FILE_DIALOG_TITLE = "Please Select Model Executable"
 
@@ -35,7 +35,7 @@ class Launcher(QMainWindow):
         qdarktheme.setup_theme("light")
         self.ui.stackedWidget.setCurrentIndex(0)
 
-        # Initialize variables to hold user selections and input values
+        # Initialize variables
         self.working_directory = None
         self.exe_path = None
         self.start_time = None
@@ -47,12 +47,14 @@ class Launcher(QMainWindow):
         self.ui.set_but.clicked.connect(self.on_set_button)
         self.ui.folder_but.clicked.connect(self.on_folder_button)
         self.ui.launch_but.clicked.connect(self.on_launch_button)
-        self.ui.doc_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(3))
+        self.ui.doc_but.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentIndex(3))
         self.ui.history_but.clicked.connect(self.on_history_button)
         self.ui.start_line.textChanged.connect(self.text_changed_start)
-        self.ui.home_but.clicked.connect(lambda: self.ui.stackedWidget.setCurrentIndex(0))
-        self.ui.theme_but.clicked.connect(self.theme)
-        self.ui.theme_set_but.clicked.connect(self.theme_set)
+        self.ui.home_but.clicked.connect(
+            lambda: self.ui.stackedWidget.setCurrentIndex(0))
+        self.ui.theme_but.clicked.connect(self.theme_button)
+        self.ui.theme_set_but.clicked.connect(self.theme_set_button)
         self.ui.stop_line.textChanged.connect(self.text_changed_stop)
         self.ui.clear_but.clicked.connect(self.clear)
         self.ui.clear_time_but.clicked.connect(self.clear_time)
@@ -64,20 +66,30 @@ class Launcher(QMainWindow):
         self.ui.start_line.setValidator(validator)
         self.ui.stop_line.setValidator(validator)
 
+    def theme_button(self):
+        """
+        Sets up the theme selection button functionality.
 
-    def theme(self):
+        This method updates the stack widget to show the theme selection
+        interface, and then dynamically populates it with the
+        available themes provided by the `qdarktheme` package.
+        """
         self.ui.stackedWidget.setCurrentIndex(1)
         self.ui.comboBox.clear()
         self.ui.comboBox.addItems(qdarktheme.get_themes())
-        
-    def theme_set(self):
+
+    def theme_set_button(self):
+        """
+        Changes the current theme of the application according
+        to the user's selection.
+        """
         self.change_theme = self.ui.comboBox.currentText()
         qdarktheme.setup_theme(self.change_theme)
 
     def on_set_button(self):
         """
-        Handle the set button click event. Validate and log the start and
-        stop time values.
+        Handle the set button click event. Validate and
+        log the start and stop time values.
         """
         self.start_time = self.ui.start_line.text().strip()
         self.stop_time = self.ui.stop_line.text().strip()
@@ -130,6 +142,7 @@ class Launcher(QMainWindow):
         Validate inputs and execute the selected executable as a subprocess.
         """
         # Validate all necessary inputs and selections before launching.
+
         if not self.exe_path:
             self.show_message_box(
                 "Error", FILE_DIALOG_TITLE, "warning"
@@ -167,12 +180,25 @@ class Launcher(QMainWindow):
                     [
                         self.exe_path,
                         f"-override=startTime={self.start_time},stopTime={self.stop_time}",
-                        f"-r=output/result.mat",
+                        "-r=output/result.mat",
                     ],
                     cwd=self.working_directory,
                     capture_output=True,
                     text=True,
                 )
+
+                target_dir = os.path.join("output", self.file_name)
+                original_dir = target_dir
+                counter = 1
+
+                # Add a numeric suffix until a unique name is found
+                while os.path.exists(target_dir):
+                    target_dir = f"{original_dir}_{counter}"
+                    counter += 1
+
+                os.mkdir(target_dir)
+                os.rename(
+                    f"{self.working_directory}/output/result.mat", os.path.join(target_dir, "result.mat"))
 
             else:
                 self.ui.status_label.setText("Running Subprocess...")
@@ -187,7 +213,8 @@ class Launcher(QMainWindow):
                 )
 
         except FileNotFoundError as e:
-            self.ui.status_label.setText("Simulation failed. Check the log file...")
+            self.ui.status_label.setText(
+                "Simulation failed. Check the log file...")
             logging.error("Status: File not found: %s", e.filename)
             self.show_message_box(
                 "Error",
@@ -195,7 +222,8 @@ class Launcher(QMainWindow):
                 "critical"
             )
         except subprocess.CalledProcessError as e:
-            self.ui.status_label.setText("Simulation failed. Check the log file...")
+            self.ui.status_label.setText(
+                "Simulation failed. Check the log file...")
             logging.error("Status: Subprocess failed: %s", e.stderr)
             self.show_message_box(
                 "Error",
@@ -207,7 +235,8 @@ class Launcher(QMainWindow):
         # Handle simulation results and show appropriate message.
         if result.stdout:
             if "LOG_SUCCESS" in result.stdout:
-                self.ui.status_label.setText("Simulation successful. Check the log file...")
+                self.ui.status_label.setText(
+                    "Simulation successful. Check the log file...")
                 logging.info("Status: Simulation successful.")
                 logging.info("STDOUT:\n%s", result.stdout.strip())
                 self.show_message_box(
@@ -216,7 +245,8 @@ class Launcher(QMainWindow):
                     "info"
                 )
             else:
-                self.ui.status_label.setText("Simulation failed. Check the log file...")
+                self.ui.status_label.setText(
+                    "Simulation failed. Check the log file...")
                 logging.error("Status: Simulation failed.")
                 logging.error("STDOUT:\n%s", result.stdout.strip())
                 logging.error(
@@ -229,14 +259,15 @@ class Launcher(QMainWindow):
                     "critical"
                 )
         else:
-            self.ui.status_label.setText("Simulation failed. Check the log file...")
+            self.ui.status_label.setText(
+                "Simulation failed. Check the log file...")
             logging.error("Status: Simulation failed.")
             logging.exception("An error occurred during simulation.")
             self.show_message_box(
                 "Simulation Status", "An error occurred", "critical"
             )
-        #if mat :
-            #run_simulation("Model/NonInteractingTanks.TwoConnectedTanks/TwoConnectedTanks_Win/output/result.mat")
+        if mat :
+            run_simulation(os.path.join(target_dir, "result.mat"))
         self.ui.status_label.setText("Screening Task - OpenModelica GUI")
 
     def text_changed_stop(self):
@@ -256,13 +287,20 @@ class Launcher(QMainWindow):
             self.start_time = None
 
     def on_history_button(self):
+        """
+        Handles the event triggered by the History button,
+        displaying log details in a list widget.
+        If the log file exists, information regarding selected models,
+        model paths, and statuses is extracted and
+        displayed in the application.
+        """
         self.ui.stackedWidget.setCurrentIndex(2)
         if os.path.exists("logs/OPLauncher.log"):
             self.ui.listWidget.clear()
 
             with open("logs/OPLauncher.log", 'r') as f:
                 for line in f:
-                    i = line
+
                     if "Selected Model:" in line:
                         line = line.split("Selected Model:")[1]
                         self.ui.listWidget.addItem("Executable: " + line)
@@ -273,9 +311,11 @@ class Launcher(QMainWindow):
 
                     if "Status:" in line:
                         status = line.split("Status:")[1]
-                        self.ui.listWidget.addItem("Status: " + status)
-                        self.ui.listWidget.addItem("-------------------------------------------------------------------------------------------------------------------------------------")
-       
+                        self.ui.listWidget.addItem(
+                            "Status: " + status)
+                        self.ui.listWidget.addItem(
+                            "-----------------------------------------------------------------------------------")
+
         else:
             self.ui.listWidget.addItem("No Logs Found")
 

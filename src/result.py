@@ -1,0 +1,56 @@
+import scipy.io
+import matplotlib.pyplot as plt
+import logging
+
+def run_simulation(file_path):
+    # Load the .mat file
+    try:
+        data = scipy.io.loadmat(file_path)
+    except Exception as e:
+        logging.error("Error reading the .mat file: %s", e)
+        return
+
+    # Check if the file contains any data
+    if not data:
+        logging.warning("The .mat file is empty or could not be loaded!")
+        return
+
+    # Log the keys in the .mat file
+    logging.info("Keys in .mat file: %s", data.keys())
+
+    # Create subplots
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))  # 1 row, 2 columns of plots
+
+    # Plot for data_1
+    if "data_1" in data:
+        x = data["data_1"][:, 0]  # First  - since the data_1 returns 2d array
+        y = data["data_1"][:, 1]  # Second column
+        axes[0].plot(x, y, marker="o")
+        axes[0].set_xlabel("X-axis")
+        axes[0].set_ylabel("Y-axis")
+        axes[0].set_title("Plot of data_1")
+        axes[0].grid()
+    else:
+        logging.warning("data_1 not found in the .mat file.")
+        axes[0].set_title("data_1 not found")
+
+    # Plot for data_2
+    if "data_2" in data:
+        x = data["data_2"][:, 0]  # First column
+        y = data["data_2"][:, 1]  # Second column
+        axes[1].plot(x, y, marker="o")
+        axes[1].set_xlabel("X-axis")
+        axes[1].set_ylabel("Y-axis")
+        axes[1].set_title("Plot of data_2")
+        axes[1].grid()
+    else:
+        logging.warning("data_2 not found in the .mat file.")
+        axes[1].set_title("data_2 not found")
+
+    # Adjust layout and display the plots
+    plt.tight_layout()
+    plt.show()
+
+
+
+

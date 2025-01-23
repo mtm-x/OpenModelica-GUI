@@ -1,3 +1,5 @@
 pyqt6
 logger
 PyQtDarkTheme-fork
+scipy
+matplotlib
