@@ -10,12 +10,10 @@
 
 - [ Getting Started](#-getting-started)
     - [Prerequisites](#-prerequisites)
-    - [Installation](#-installation)
+    - [Installation](#️-installation)
+
 - [ Usage Instructions](#-usage-instructions)
-    - [Step 1: Launching the Application](#-step-1-launching-the-application)
-    - [Step 2: Setting up the Simulation](#-step-2-setting-up-the-simulation)
-    - [Step 3: Running the Simulation](#-step-3-running-the-simulation)
-    - [Step 4: Additional Help](#-step-4-additional-help)
+
 - [ Example Workflow](#-example-workflow)
 
 - [ Logging](#-logging)
@@ -32,7 +30,8 @@ The **OpenModelica Model Launcher (OML)** is a graphical user interface (**GUI**
 This launcher allows you to:
 - Select Modelica model executables.
 - Configure simulation parameters such as start time and stop time.
-- Execute selected model in the background with proper logs and notifications on success or failure.
+- Execute the selected model and generate output files in `.mat` format.
+- Visualize the simulation results using Matplotlib for detailed analysis.
 
 ---
 
@@ -42,13 +41,15 @@ This launcher allows you to:
     - Seamless integration of widgets for parameter configuration and model selection.
 
 - **🌐 Platform Support**:
+
     - **Linux**
     - **Windows**
 
 - **🎛️ Simulation Control**:
     - Configure simulation start and stop times.
-    - Execute Modelica models using the specified parameters. 
-    - Execution with real-time status updates.
+    - Execute Modelica models using the specified parameters.
+    - Plot the model output when the "Plot the Output" button is        pressed.
+    - Receive real-time status updates during execution.
 
 - **⚠️ Error Handling and Notifications**:
     - Real-time feedback on simulation success or failure with detailed logs.
@@ -68,7 +69,10 @@ The following software and dependencies must be installed on your system:
 2. The following Python libraries installed using `pip`:
     - `PyQt6` (for GUI development)
     - `logging` (for logging functionality)
-3. OpenModelica or any compatible Modelica simulation executable.
+    - `matplotlib` (for plotting results)
+    - `scipy` (for handling .mat files)
+    - `qdarktheme` (for dark theme support)
+3. OpenModelica simulation executable.
 
 To install the required Python packages:
    ```bash
@@ -79,6 +83,7 @@ To install the required Python packages:
    pip3 install -r requirements.txt
    ```
 
+---
 
 ### 🛠️ Installation
 1. Clone this repository to your local system:
@@ -113,33 +118,33 @@ Run the script `ModelLauncher.py` using Python. The GUI for the OML will appear.
     - Once your parameters are set, click "Set" to validate the inputs.
 
 ### 🏃 Step 3: Running the Simulation
-- Click the "Launch" button.
-- The simulation will begin execution in the background with real-time progress tracking.
-- Notifications will display success or failure results.
+- To generate a plot, ensure you check the "Plot the O/p" button before launching.
+- Click the "Launch" button to start the simulation.
+- The simulation will execute in the background with real-time progress tracking.
+- Notifications will display the results, indicating success or failure.
 
 ### ❓ Step 4: Additional Help
-- Click the "Help" button to open the documentation.
-- Use the "Info" button to access details about the application.
-
+- Click the "History" button to view recent simulation logs.
+- Use the "Docs" button to access detailed information about the application and relevant links.
 ---
 
 ## 🛠️ Example Workflow
-1. **Model Selection**: Choose a Modelica model executable (`*.exe`).
+1. **Model Selection**: Choose a Modelica model executable (`*.exe` for Windows).
 2. **Define Parameters**:
     - Enter values for:
         - Start Time: `0`
         - Stop Time: `5`
 3. **Simulation Launch**:
-    - Click "Launch" for execution.
+    - Check the "Plot the O/p" option if you need to generate plots.
+    - Click "Launch" to start the execution.
     - Check logs and notification pop-ups for results.
-
 ---
 
 ## 📝 Logging
 The application uses a centralized logging system to provide detailed analysis and debugging:
 - Console output for real-time monitoring.
-- Log files saved as `OPLauncher.log` for deeper diagnostics.
-
+- Recent simulation data can be viewed using the "History" button.
+- Log files are saved as `OPLauncher.log` for deeper diagnostics.
 ---
 
 ## 📷 Screenshot

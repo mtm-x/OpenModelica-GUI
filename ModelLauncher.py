@@ -3,6 +3,7 @@ import os
 import platform
 import subprocess
 import qdarktheme
+import sys
 
 from PyQt6.QtGui import QIcon, QIntValidator, QFontDatabase
 from PyQt6.QtWidgets import QMainWindow, QApplication, QFileDialog, QMessageBox
@@ -49,12 +50,18 @@ class Launcher(QMainWindow):
 
         # Set window title and icon
         self.setWindowTitle("OpenModelica Model Launcher")
-        self.setWindowIcon(QIcon("res/pngs/OML1.ico"))
+        self.setWindowIcon(QIcon(self.resource_path("res/pngs/OML1.ico")))
         qdarktheme.setup_theme("auto")
         self.ui.stackedWidget.setCurrentIndex(0)
-        QFontDatabase.addApplicationFont("res/fonts/Montserrat-ExtraBold.ttf")
-        QFontDatabase.addApplicationFont("res/fonts/Montserrat-Regular.ttf")
-        QFontDatabase.addApplicationFont("res/fonts/Montserrat-SemiBold.ttf")
+        # QFontDatabase.addApplicationFont("res/fonts/Montserrat-ExtraBold.ttf")
+        # QFontDatabase.addApplicationFont("res/fonts/Montserrat-Regular.ttf")
+        # QFontDatabase.addApplicationFont("res/fonts/Montserrat-SemiBold.ttf")
+        
+
+        # Add application fonts
+        QFontDatabase.addApplicationFont(self.resource_path("res/fonts/Montserrat-ExtraBold.ttf"))
+        QFontDatabase.addApplicationFont(self.resource_path("res/fonts/Montserrat-Regular.ttf"))
+        QFontDatabase.addApplicationFont(self.resource_path("res/fonts/Montserrat-SemiBold.ttf"))
 
         # Initialize variables
         self.working_directory = None
@@ -86,6 +93,12 @@ class Launcher(QMainWindow):
         validator = QIntValidator(0, 10000, self)
         self.ui.start_line.setValidator(validator)
         self.ui.stop_line.setValidator(validator)
+        
+    def resource_path(self,relative_path):
+            """Get the absolute path to a resource."""
+            if hasattr(sys, '_MEIPASS'):  # PyInstaller stores resources in _MEIPASS
+                return os.path.join(sys._MEIPASS, relative_path)
+            return os.path.join(os.path.abspath("."), relative_path)
 
     def theme_button(self):
         """
@@ -117,6 +130,7 @@ class Launcher(QMainWindow):
         logging.info(
              "Start Time: %s, Stop Time: %s", self.start_time, self.stop_time
                     )
+        self.ui.status_label.setText(f"Configured Start Time: {self.start_time}, Stop Time: {self.stop_time}")
 
         # Show an error message if either of the input fields is empty.
         if not self.start_time or not self.stop_time:
@@ -241,7 +255,7 @@ class Launcher(QMainWindow):
                 )
                 try:
                     if not os.path.exists("output"):
-                        os.makedirs("output")
+                        os.makedir("output")
 
                     target_dir = os.path.join("output", self.file_name)
                     original_dir = target_dir
@@ -363,6 +377,7 @@ class Launcher(QMainWindow):
         self.exe_path = None
         self.ui.launch_but.setEnabled(False)
         logging.info("Model and working directory cleared")
+        self.ui.status_label.setText("Model and working directory cleared")
 
     def clear_time(self):
         """
@@ -373,6 +388,7 @@ class Launcher(QMainWindow):
         self.start_time = None
         self.stop_time = None
         logging.info("Start and stop time cleared")
+        self.ui.status_label.setText("Start and stop time cleared")
 
     def show_message_box(self, title, message, icon_type):
         """
