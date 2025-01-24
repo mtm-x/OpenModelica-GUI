@@ -1,5 +1,6 @@
 import logging
 
+
 def run_simulation(file_path):
     """
     Run the simulation using the data from the .mat file and plot the results.
@@ -22,7 +23,7 @@ def run_simulation(file_path):
         return
 
     # Create subplots
-    fig, axes = plt.subplots(1, 2, figsize=(12, 6))  # 1 row, 2 columns of plots
+    fig, axes = plt.subplots(1, 2, figsize=(12, 6))
 
     # Plot for data_1
     if "data_1" in data:

@@ -14,7 +14,7 @@
 
 - [ Usage Instructions](#-usage-instructions)
 
-- [ Example Workflow](#-example-workflow)
+- [ Example Workflow](#️-example-workflow)
 
 - [ Logging](#-logging)
 
@@ -125,7 +125,7 @@ To install the required Python packages:
 ## 📖 Usage Instructions
 
 ### ▶️ Step 1: Launching the Application
-Run the script `ModelLauncher.py` using Python. The GUI for the OML will appear.
+Run the script `ModelLauncher.py` using Python or launch the application.
 
 ### ⚙️ Step 2: Setting up the Simulation
 1. **Select Model File**: Click "Choose File" and browse for the Modelica model executable file.

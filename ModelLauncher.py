@@ -20,7 +20,7 @@ class Libloader(QThread):
     """
     A background thread to preload matplotlib and scipy.
     """
-    loaded = pyqtSignal() 
+    loaded = pyqtSignal()
 
     def run(self):
         """
@@ -53,15 +53,14 @@ class Launcher(QMainWindow):
         self.setWindowIcon(QIcon(self.resource_path("res/pngs/OML1.ico")))
         qdarktheme.setup_theme("auto")
         self.ui.stackedWidget.setCurrentIndex(0)
-        # QFontDatabase.addApplicationFont("res/fonts/Montserrat-ExtraBold.ttf")
-        # QFontDatabase.addApplicationFont("res/fonts/Montserrat-Regular.ttf")
-        # QFontDatabase.addApplicationFont("res/fonts/Montserrat-SemiBold.ttf")
-        
 
         # Add application fonts
-        QFontDatabase.addApplicationFont(self.resource_path("res/fonts/Montserrat-ExtraBold.ttf"))
-        QFontDatabase.addApplicationFont(self.resource_path("res/fonts/Montserrat-Regular.ttf"))
-        QFontDatabase.addApplicationFont(self.resource_path("res/fonts/Montserrat-SemiBold.ttf"))
+        QFontDatabase.addApplicationFont(
+            self.resource_path("res/fonts/Montserrat-ExtraBold.ttf"))
+        QFontDatabase.addApplicationFont(
+            self.resource_path("res/fonts/Montserrat-Regular.ttf"))
+        QFontDatabase.addApplicationFont(
+            self.resource_path("res/fonts/Montserrat-SemiBold.ttf"))
 
         # Initialize variables
         self.working_directory = None
@@ -93,12 +92,14 @@ class Launcher(QMainWindow):
         validator = QIntValidator(0, 10000, self)
         self.ui.start_line.setValidator(validator)
         self.ui.stop_line.setValidator(validator)
-        
-    def resource_path(self,relative_path):
-            """Get the absolute path to a resource."""
-            if hasattr(sys, '_MEIPASS'):  # PyInstaller stores resources in _MEIPASS
-                return os.path.join(sys._MEIPASS, relative_path)
-            return os.path.join(os.path.abspath("."), relative_path)
+
+    def resource_path(self, relative_path):
+        """Get the absolute path to a resource."""
+        if hasattr(sys, '_MEIPASS'):
+            return os.path.join(
+                sys._MEIPASS, relative_path)
+        return os.path.join(
+            os.path.abspath("."), relative_path)
 
     def theme_button(self):
         """
@@ -130,7 +131,8 @@ class Launcher(QMainWindow):
         logging.info(
              "Start Time: %s, Stop Time: %s", self.start_time, self.stop_time
                     )
-        self.ui.status_label.setText(f"Configured Start Time: {self.start_time}, Stop Time: {self.stop_time}")
+        self.ui.status_label.setText(
+            f"Configured Start Time: {self.start_time}, Stop Time: {self.stop_time}")
 
         # Show an error message if either of the input fields is empty.
         if not self.start_time or not self.stop_time:
@@ -220,7 +222,6 @@ class Launcher(QMainWindow):
                 text=True,
             )
 
-
         except FileNotFoundError as e:
             self.ui.status_label.setText(
                 "Simulation failed. Check the log file...")
@@ -268,14 +269,15 @@ class Launcher(QMainWindow):
 
                     os.mkdir(target_dir)
                     os.rename(
-                        f"{self.working_directory}/result.mat", os.path.join(target_dir, "result.mat"))
+                        f"{self.working_directory}/result.mat", os.path.join(
+                            target_dir, "result.mat"))
                 except Exception as e:
                     self.ui.status_label.setText(
                         "Simulation failed. Check the log file...")
                     logging.error("Status: Error creating output directory: %s", e)
                     self.show_message_box(
                         "Error",
-                        "Error creating output directory. Maybe the executable isn't correct",
+                        "Error creating output directory.",
                         "critical"
                     )
 
@@ -304,10 +306,11 @@ class Launcher(QMainWindow):
 
         plot = self.ui.plot_check_but.isChecked()
         try:
-            if plot :
+            if plot:
                 self.ui.status_label.setText("Showing the plots...")
-                run_simulation(os.path.join(target_dir, "result.mat"))
-            
+                run_simulation(
+                    os.path.join(target_dir, "result.mat"))
+
         except Exception as e:
             self.ui.status_label.setText("Cannot show the plots...")
             logging.error("Status: Error showing plots: %s", e)

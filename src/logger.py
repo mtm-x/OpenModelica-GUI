@@ -24,8 +24,8 @@ def setup_logging(log_file="logs/OPLauncher.log"):
             logging.StreamHandler()  # Also output logs to the console
         ]
     )
-    logging.getLogger('matplotlib').setLevel(logging.WARNING)  # Suppress Matplotlib DEBUG logs
-    logging.getLogger('scipy').setLevel(logging.ERROR)  # Suppress scipy logs if needed
+    logging.getLogger('matplotlib').setLevel(logging.WARNING)
+    logging.getLogger('scipy').setLevel(logging.ERROR)
     logging.info(
         "Logging system initialized. Writing logs to '%s'", log_file
     )
