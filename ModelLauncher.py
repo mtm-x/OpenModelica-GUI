@@ -255,7 +255,7 @@ class Launcher(QMainWindow):
                 )
                 try:
                     if not os.path.exists("output"):
-                        os.makedir("output")
+                        os.mkdir("output")
 
                     target_dir = os.path.join("output", self.file_name)
                     original_dir = target_dir
