@@ -2,7 +2,7 @@
 # 🚀 **OpenModelica Model Launcher (OML)** 
 
 ## 📚 **Contents**
-- [ OpenModelica Model Launcher (OML)](#-openmodelica-model-launcher-oml-)
+- [ OpenModelica Model Launcher (OML)](#-openmodelica-model-launcher-oml)
   - [Contents](#-contents)
 - [ Overview](#-overview)
 
@@ -86,6 +86,24 @@ To install the required Python packages:
 ---
 
 ### 🛠️ Installation
+### Installation via Executables
+
+1. **Download the Executable:**
+   - Navigate to the [Releases](https://github.com/mtm-x/OpenModelica-GUI/releases/tag/v1.0.0) section of this repository.
+   - Find the latest version and download the appropriate executable file for your operating system (e.g., `.exe` for Windows or a binary for Linux/Mac).
+
+2. **Run the Executable:**
+   - For **Windows**:
+     - Double-click the `.exe` file to launch the application.
+   - For **Linux**:
+     - Open a terminal in the directory containing the executable.
+     - Run the file using:  
+       ```bash
+       ./ModelLauncher_Lin_V1.0.0
+       ```
+---
+
+### Installation via GitHub
 1. Clone this repository to your local system:
    ```bash
    git clone https://github.com/mtm-x/OpenModelica-GUI
