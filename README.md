@@ -90,7 +90,7 @@ The following software and dependencies must be installed on your system:
     - `qdarktheme` (for dark theme support)
 3. OpenModelica simulation executable.
 
-To install the required Python packages:
+To install the required Python packages:( Only needed for GitHub installation)
    ```bash
    pip install -r requirements.txt
    ```
