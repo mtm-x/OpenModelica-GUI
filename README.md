@@ -60,7 +60,21 @@ This launcher allows you to:
     - Configurable logging to ensure ease of troubleshooting.
 
 ---
+## 🛠️ **Technology Used**  
 
+### 🖥️ **Development & Tools**  
+![Python](https://img.shields.io/badge/Python-3.12-%233572A5?logo=python&logoColor=white)  
+![PyQt6](https://img.shields.io/badge/PyQt6-GUI%20Framework-%2341CD52?logo=qt&logoColor=white)  
+![OpenModelica](https://img.shields.io/badge/OpenModelica-Simulation%20Engine-%230F4C81?logo=openmodelica&logoColor=white)  
+![Matplotlib](https://img.shields.io/badge/Matplotlib-Plotting-%2300768B?logo=matplotlib&logoColor=white)  
+![SciPy](https://img.shields.io/badge/SciPy-Data%20Analysis-%230C55A5?logo=scipy&logoColor=white)  
+![GitHub](https://img.shields.io/badge/GitHub-Repo%20Hosting-%23181717?logo=github&logoColor=white)  
+
+### 🎨 **Design & Assets**  
+![Flaticon](https://img.shields.io/badge/Flaticon-Icons-%23E34F26?logo=flaticon&logoColor=white)  
+
+### 📜 **Attribution**  
+Icons by [Freepik](https://www.flaticon.com/authors/freepik) and [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [Flaticon](https://www.flaticon.com/).  
 ## 🚦 Getting Started
 
 ### 🔧 Prerequisites
