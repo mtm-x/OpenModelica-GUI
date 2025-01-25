@@ -74,7 +74,9 @@ This launcher allows you to:
 ![Flaticon](https://img.shields.io/badge/Flaticon-Icons-%23E34F26?logo=flaticon&logoColor=white)  
 
 ### 📜 **Attribution**  
-Icons by [Freepik](https://www.flaticon.com/authors/freepik) and [Pixel perfect](https://www.flaticon.com/authors/pixel-perfect) from [Flaticon](https://www.flaticon.com/).  
+Icons from [Flaticon](https://www.flaticon.com/).  
+
+---
 ## 🚦 Getting Started
 
 ### 🔧 Prerequisites
