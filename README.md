@@ -2,25 +2,28 @@
 # 🚀 **OpenModelica Model Launcher (OML)** 
 
 ## 📚 **Contents**
-- [ OpenModelica Model Launcher (OML)](#-openmodelica-model-launcher-oml)
-  - [Contents](#-contents)
-- [ Overview](#-overview)
-
-- [ Features](#-features)
-
-- [ Getting Started](#-getting-started)
-    - [Prerequisites](#-prerequisites)
-    - [Installation](#️-installation)
-
-- [ Usage Instructions](#-usage-instructions)
-
-- [ Example Workflow](#️-example-workflow)
-
-- [ Logging](#-logging)
-
-- [ Screenshot](#-screenshot)
-
-- [ Demo](#-demo)
+- [🚀 **OpenModelica Model Launcher (OML)**](#-openmodelica-model-launcher-oml)
+  - [📚 **Contents**](#-contents)
+  - [🔍 Overview](#-overview)
+  - [✨ Features](#-features)
+  - [🛠️ **Technology Used**](#️-technology-used)
+    - [🖥️ **Development \& Tools**](#️-development--tools)
+    - [🎨 **Design \& Assets**](#-design--assets)
+    - [📜 **Attribution**](#-attribution)
+  - [🚦 Getting Started](#-getting-started)
+    - [🔧 Prerequisites](#-prerequisites)
+    - [🛠️ Installation](#️-installation)
+    - [Installation via Executables](#installation-via-executables)
+    - [Installation via GitHub](#installation-via-github)
+  - [📖 Usage Instructions](#-usage-instructions)
+    - [▶️ Step 1: Launching the Application](#️-step-1-launching-the-application)
+    - [⚙️ Step 2: Setting up the Simulation](#️-step-2-setting-up-the-simulation)
+    - [🏃 Step 3: Running the Simulation](#-step-3-running-the-simulation)
+    - [❓ Step 4: Additional Help](#-step-4-additional-help)
+  - [🛠️ Example Workflow](#️-example-workflow)
+  - [📝 Logging](#-logging)
+  - [📷 Screenshot](#-screenshot)
+  - [🎥 Demo](#-demo)
 
 ---
 
@@ -127,7 +130,23 @@ To install the required Python packages:( Only needed for GitHub installation)
    ```bash
    cd OpenModelica-GUI
    ```
-2. Run the application:
+2. The following Python libraries installed using `pip`:
+    - `PyQt6` (for GUI development)
+    - `logging` (for logging functionality)
+    - `matplotlib` (for plotting results)
+    - `scipy` (for handling .mat files)
+    - `qdarktheme` (for dark theme support)
+      
+  To install the required Python packages:
+     ```bash
+     pip install -r requirements.txt
+     ```
+     **or**
+     ```bash
+     pip3 install -r requirements.txt
+     ```
+
+3. Run the application:
    ```bash
    python ModelLauncher.py
    ```
@@ -135,7 +154,6 @@ To install the required Python packages:( Only needed for GitHub installation)
    ```bash
    python3 ModelLauncher.py
    ```
-
 ---
 
 ## 📖 Usage Instructions

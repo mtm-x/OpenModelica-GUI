@@ -211,17 +211,27 @@ class Launcher(QMainWindow):
             # Correct the handling of the arguments for 'mat'.
             self.ui.status_label.setText("Running Subprocess...")
             logging.info("Exporting results to output/result.mat")
-            result = subprocess.run(
-                [
-                    self.exe_path,
-                    f"-override=startTime={self.start_time},stopTime={self.stop_time}",
-                    "-r=result.mat",
-                ],
-                cwd=self.working_directory,
-                capture_output=True,
-                text=True,
-            )
-
+            try:
+                result = subprocess.run(
+                    [
+                        self.exe_path,
+                        f"-override=startTime={self.start_time},stopTime={self.stop_time}",
+                        "-r=result.mat",
+                    ],
+                    cwd=self.working_directory,
+                    capture_output=True,
+                    text=True,
+                )
+            except Exception as e:
+                self.ui.status_label.setText(
+                    "Simulation failed. Check the log file...")
+                logging.error("Status: Error running subprocess: %s", e)
+                self.show_message_box(
+                    "Error",
+                    "Error running subprocess. Please check the log file.",
+                    "critical"
+                )
+                return
         except FileNotFoundError as e:
             self.ui.status_label.setText(
                 "Simulation failed. Check the log file...")
